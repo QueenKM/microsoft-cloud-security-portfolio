@@ -28,3 +28,11 @@ python3 app/main.py
 - the register is saved locally to `data/risk_register.json`
 - loading the sample scenario replaces the current register in the MVP
 - CSV export is the first reporting output; richer exports can be added next
+
+## Generate Demo Assets
+
+```bash
+python3 scripts/generate_demo_artifacts.py
+```
+
+This creates a dashboard screenshot and a sample CSV export in [artifacts](../artifacts/README.md).

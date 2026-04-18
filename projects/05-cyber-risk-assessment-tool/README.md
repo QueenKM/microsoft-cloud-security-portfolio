@@ -58,6 +58,16 @@ QT_QPA_PLATFORM=offscreen python3 app/main.py --smoke-test
 - export the current register to CSV
 - save the register locally between sessions
 
+## Demo Artifacts
+
+- [Generated screenshot](artifacts/01-main-dashboard.png)
+- [Generated CSV export](artifacts/01-risk-register-export.csv)
+- [Artifacts note](artifacts/README.md)
+
+### Screenshot Preview
+
+![Cyber Risk Assessment Tool main dashboard](artifacts/01-main-dashboard.png)
+
 ## Project Structure
 
 - [Application Entry Point](app/main.py)

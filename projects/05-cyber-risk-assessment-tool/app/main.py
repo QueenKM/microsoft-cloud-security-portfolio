@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import argparse
 import sys
 from pathlib import Path
 
@@ -240,6 +241,7 @@ class MainWindow(QMainWindow):
 
     def _populate_table(self) -> None:
         self.table.setRowCount(len(self.risks))
+        selected_row: int | None = None
         for row_index, risk in enumerate(self.risks):
             residual = calculate_residual_score(
                 risk.impact, risk.likelihood, risk.control_effectiveness
@@ -257,7 +259,13 @@ class MainWindow(QMainWindow):
                 item = QTableWidgetItem(value)
                 item.setData(Qt.UserRole, risk.identifier)
                 self.table.setItem(row_index, column, item)
+            if self.selected_identifier and risk.identifier == self.selected_identifier:
+                selected_row = row_index
         self.table.resizeColumnsToContents()
+        if selected_row is not None:
+            self.table.selectRow(selected_row)
+        elif self.table.rowCount() > 0:
+            self.table.selectRow(0)
 
     def _refresh_dashboard(self) -> None:
         summary = summarize_risks(self.risks)
@@ -390,6 +398,9 @@ class MainWindow(QMainWindow):
         self._refresh_dashboard()
         self.statusBar().showMessage("Ransomware scenario loaded", 3000)
 
+    def load_sample_scenario(self) -> None:
+        self._load_sample_scenario()
+
     def _export_csv(self) -> None:
         export_path, _ = QFileDialog.getSaveFileName(
             self,
@@ -401,6 +412,9 @@ class MainWindow(QMainWindow):
             return
         export_csv(Path(export_path), self.risks)
         self.statusBar().showMessage(f"Exported CSV to {export_path}", 5000)
+
+    def export_register_csv(self, path: Path) -> None:
+        export_csv(path, self.risks)
 
     def _save_all(self) -> None:
         save_risks(DATA_PATH, self.risks)
@@ -428,13 +442,58 @@ def _summary_group(
     return group
 
 
+def parse_args(argv: list[str]) -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Cyber Risk Assessment Tool")
+    parser.add_argument("--smoke-test", action="store_true", help="Start and exit immediately.")
+    parser.add_argument(
+        "--load-sample",
+        action="store_true",
+        help="Load the sample ransomware scenario before showing or exporting.",
+    )
+    parser.add_argument(
+        "--capture",
+        type=Path,
+        help="Capture a window screenshot to the provided path.",
+    )
+    parser.add_argument(
+        "--export-csv",
+        type=Path,
+        help="Export the current register to a CSV path.",
+    )
+    parser.add_argument(
+        "--no-show",
+        action="store_true",
+        help="Do not keep the main window open after automated tasks.",
+    )
+    return parser.parse_args(argv[1:])
+
+
 def main(argv: list[str] | None = None) -> int:
     argv = argv or sys.argv
+    args = parse_args(argv)
     app = QApplication(argv)
     window = MainWindow()
 
-    if "--smoke-test" in argv:
+    if args.load_sample:
+        window.load_sample_scenario()
+
+    if args.export_csv:
+        window.export_register_csv(args.export_csv)
+
+    if args.smoke_test:
         print("cyber-risk-tool-smoke-test: ok")
+        return 0
+
+    if args.capture:
+        window.show()
+        app.processEvents()
+        args.capture.parent.mkdir(parents=True, exist_ok=True)
+        window.grab().save(str(args.capture))
+        print(f"cyber-risk-tool-captured: {args.capture}")
+        if args.no_show:
+            return 0
+
+    if args.no_show:
         return 0
 
     window.show()

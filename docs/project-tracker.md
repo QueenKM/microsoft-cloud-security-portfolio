@@ -28,6 +28,7 @@
 - [ ] Choose the first dataset for the Power BI pipeline.
 - [x] Decide whether the desktop risk tool will use `PySide6` or another GUI stack.
 - [x] Build the first Cyber Risk Assessment Tool MVP with local scoring and CSV export.
+- [x] Generate the first Cyber Risk Assessment Tool screenshot and sample export artifacts.
 - [ ] Draft the first Teams governance policy pack.
 
 ## Quality Bar
