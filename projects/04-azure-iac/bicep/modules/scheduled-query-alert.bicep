@@ -10,7 +10,7 @@ param location string
 param displayName string
 
 @description('Description for the alert rule.')
-param description string
+param alertDescription string
 
 @description('Target scope for the alert query, usually the Log Analytics workspace resource ID.')
 param scopeResourceId string
@@ -64,7 +64,7 @@ resource scheduledQueryRule 'Microsoft.Insights/scheduledQueryRules@2023-12-01' 
         }
       ]
     }
-    description: description
+    description: alertDescription
     displayName: displayName
     enabled: true
     evaluationFrequency: evaluationFrequency

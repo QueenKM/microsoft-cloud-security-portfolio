@@ -174,7 +174,6 @@ module managementNetworkSecurityGroup './modules/network-security-group.bicep' =
   scope: resourceGroup(demoWorkloadResourceGroupName)
   dependsOn: [
     demoWorkloadResourceGroup
-    logAnalyticsWorkspace
   ]
   params: {
     diagnosticWorkspaceId: logAnalyticsWorkspace.outputs.workspaceId
@@ -190,7 +189,6 @@ module workloadNetworkSecurityGroup './modules/network-security-group.bicep' = {
   scope: resourceGroup(demoWorkloadResourceGroupName)
   dependsOn: [
     demoWorkloadResourceGroup
-    logAnalyticsWorkspace
   ]
   params: {
     diagnosticWorkspaceId: logAnalyticsWorkspace.outputs.workspaceId
@@ -206,8 +204,6 @@ module virtualNetwork './modules/virtual-network.bicep' = {
   scope: resourceGroup(demoWorkloadResourceGroupName)
   dependsOn: [
     demoWorkloadResourceGroup
-    managementNetworkSecurityGroup
-    workloadNetworkSecurityGroup
   ]
   params: {
     addressPrefixes: virtualNetworkAddressPrefixes
@@ -228,7 +224,6 @@ module demoStorageAccount './modules/storage-account.bicep' = {
   scope: resourceGroup(demoWorkloadResourceGroupName)
   dependsOn: [
     demoWorkloadResourceGroup
-    logAnalyticsWorkspace
   ]
   params: {
     diagnosticWorkspaceId: logAnalyticsWorkspace.outputs.workspaceId
@@ -246,7 +241,6 @@ module demoVirtualMachine './modules/linux-virtual-machine.bicep' = if (deployDe
   scope: resourceGroup(demoWorkloadResourceGroupName)
   dependsOn: [
     demoWorkloadResourceGroup
-    virtualNetwork
   ]
   params: {
     adminUsername: demoVirtualMachineAdminUsername
@@ -353,8 +347,8 @@ module rbacRoleAssignmentAlert './modules/scheduled-query-alert.bicep' = if (ena
     alertActionGroup
   ]
   params: {
-    actionGroupResourceIds: alertNotificationEmail != '' ? [alertActionGroup.outputs.actionGroupId] : []
-    description: 'Detects Azure RBAC role assignment changes in the lab subscription.'
+    actionGroupResourceIds: alertNotificationEmail != '' ? [alertActionGroup.outputs.actionGroupId!] : []
+    alertDescription: 'Detects Azure RBAC role assignment changes in the lab subscription.'
     displayName: 'RBAC Role Assignment Changes'
     evaluationFrequency: alertEvaluationFrequency
     location: location
@@ -373,12 +367,10 @@ module nsgSecurityRuleChangeAlert './modules/scheduled-query-alert.bicep' = if (
   scope: resourceGroup(monitoringResourceGroupName)
   dependsOn: [
     monitoringResourceGroup
-    logAnalyticsWorkspace
-    alertActionGroup
   ]
   params: {
-    actionGroupResourceIds: alertNotificationEmail != '' ? [alertActionGroup.outputs.actionGroupId] : []
-    description: 'Detects network security group and security rule changes in the lab subscription.'
+    actionGroupResourceIds: alertNotificationEmail != '' ? [alertActionGroup.outputs.actionGroupId!] : []
+    alertDescription: 'Detects network security group and security rule changes in the lab subscription.'
     displayName: 'NSG Or Security Rule Changes'
     evaluationFrequency: alertEvaluationFrequency
     location: location
@@ -397,12 +389,10 @@ module diagnosticSettingsChangeAlert './modules/scheduled-query-alert.bicep' = i
   scope: resourceGroup(monitoringResourceGroupName)
   dependsOn: [
     monitoringResourceGroup
-    logAnalyticsWorkspace
-    alertActionGroup
   ]
   params: {
-    actionGroupResourceIds: alertNotificationEmail != '' ? [alertActionGroup.outputs.actionGroupId] : []
-    description: 'Detects diagnostic settings changes that could reduce visibility in the lab.'
+    actionGroupResourceIds: alertNotificationEmail != '' ? [alertActionGroup.outputs.actionGroupId!] : []
+    alertDescription: 'Detects diagnostic settings changes that could reduce visibility in the lab.'
     displayName: 'Diagnostic Settings Changes'
     evaluationFrequency: alertEvaluationFrequency
     location: location
@@ -429,6 +419,6 @@ output managementNetworkSecurityGroupResourceId string = managementNetworkSecuri
 output workloadNetworkSecurityGroupResourceId string = workloadNetworkSecurityGroup.outputs.networkSecurityGroupId
 output storageAccountName string = demoStorageAccount.outputs.storageAccountName
 output storageAccountResourceId string = demoStorageAccount.outputs.storageAccountId
-output demoVirtualMachineName string = deployDemoVirtualMachine ? demoVirtualMachine.outputs.virtualMachineName : ''
-output demoVirtualMachineResourceId string = deployDemoVirtualMachine ? demoVirtualMachine.outputs.virtualMachineId : ''
-output alertActionGroupName string = alertNotificationEmail != '' ? alertActionGroup.outputs.actionGroupName : ''
+output demoVirtualMachineName string = deployDemoVirtualMachine ? demoVirtualMachine.outputs.virtualMachineName! : ''
+output demoVirtualMachineResourceId string = deployDemoVirtualMachine ? demoVirtualMachine.outputs.virtualMachineId! : ''
+output alertActionGroupName string = alertNotificationEmail != '' ? alertActionGroup.outputs.actionGroupName! : ''
