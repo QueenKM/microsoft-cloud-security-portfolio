@@ -2,7 +2,7 @@
 
 ## Overall Status
 
-- `01-cloud-security-lab`: Scaffolding complete
+- `01-cloud-security-lab`: In progress, architecture and control docs started
 - `02-zero-trust-architecture-blueprint`: Scaffolding complete
 - `03-power-bi-azure-data-pipeline`: Scaffolding complete
 - `04-azure-iac`: Scaffolding complete
@@ -12,8 +12,8 @@
 ## Immediate Backlog
 
 - [ ] Define Azure tenant and subscription boundaries for the sandbox.
-- [ ] Create the first version of the cloud security lab architecture diagram.
-- [ ] List the exact Entra ID and Sentinel components to configure.
+- [x] Create the first version of the cloud security lab architecture diagram.
+- [x] List the exact Entra ID and Sentinel components to configure.
 - [ ] Choose the first dataset for the Power BI pipeline.
 - [ ] Decide whether the desktop risk tool will use `PySide6` or another GUI stack.
 - [ ] Draft the first Teams governance policy pack.

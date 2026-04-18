@@ -41,6 +41,10 @@ This is the flagship project in the portfolio. It shows hands-on execution with 
 ## Starter Docs
 
 - [Implementation Plan](docs/implementation-plan.md)
+- [Architecture Overview](docs/architecture.md)
+- [RBAC Model](docs/rbac-model.md)
+- [Conditional Access Matrix](docs/conditional-access-matrix.md)
+- [Sentinel Onboarding Checklist](docs/sentinel-onboarding-checklist.md)
 - [Starter KQL Detections](docs/kql-detections.md)
 - [Safe Attack Simulation Plan](docs/attack-simulation.md)
 
