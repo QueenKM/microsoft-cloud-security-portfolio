@@ -40,9 +40,9 @@ This is the flagship project in the portfolio. It shows hands-on execution with 
 
 ## Starter Docs
 
-- [Implementation Plan](/Users/kris/Desktop/microsoft-cloud-security-portfolio/projects/01-cloud-security-lab/docs/implementation-plan.md)
-- [Starter KQL Detections](/Users/kris/Desktop/microsoft-cloud-security-portfolio/projects/01-cloud-security-lab/docs/kql-detections.md)
-- [Safe Attack Simulation Plan](/Users/kris/Desktop/microsoft-cloud-security-portfolio/projects/01-cloud-security-lab/docs/attack-simulation.md)
+- [Implementation Plan](docs/implementation-plan.md)
+- [Starter KQL Detections](docs/kql-detections.md)
+- [Safe Attack Simulation Plan](docs/attack-simulation.md)
 
 ## Build Phases
 

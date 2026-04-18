@@ -1,5 +1,8 @@
 # Microsoft Cloud Security Portfolio
 
+[![Docs Quality](https://github.com/QueenKM/microsoft-cloud-security-portfolio/actions/workflows/docs-quality.yml/badge.svg)](https://github.com/QueenKM/microsoft-cloud-security-portfolio/actions/workflows/docs-quality.yml)
+[![License](https://img.shields.io/github/license/QueenKM/microsoft-cloud-security-portfolio)](./LICENSE)
+
 This repository is a structured portfolio workspace for six Microsoft and Azure focused projects. The goal is to build a strong, interview-ready body of work that demonstrates cloud security, architecture, governance, data analytics, and practical software delivery.
 
 ## Portfolio Goals
@@ -15,7 +18,7 @@ This repository is a structured portfolio workspace for six Microsoft and Azure 
 
 Use one fictional organization across the whole portfolio so every project feels connected instead of random. This repo uses `Astera University` as the common scenario: a mid-sized institution with cloud identities, remote users, regulated data, student collaboration needs, and a small security team.
 
-See [docs/portfolio-scenario.md](/Users/kris/Desktop/microsoft-cloud-security-portfolio/docs/portfolio-scenario.md) for the shared assumptions.
+See [docs/portfolio-scenario.md](docs/portfolio-scenario.md) for the shared assumptions.
 
 ## Project Map
 
@@ -64,10 +67,21 @@ Each project should eventually contain:
 
 ## Planning Docs
 
-- [docs/roadmap.md](/Users/kris/Desktop/microsoft-cloud-security-portfolio/docs/roadmap.md)
-- [docs/project-tracker.md](/Users/kris/Desktop/microsoft-cloud-security-portfolio/docs/project-tracker.md)
-- [docs/decision-log-template.md](/Users/kris/Desktop/microsoft-cloud-security-portfolio/docs/decision-log-template.md)
-- [docs/threat-model-template.md](/Users/kris/Desktop/microsoft-cloud-security-portfolio/docs/threat-model-template.md)
+- [docs/roadmap.md](docs/roadmap.md)
+- [docs/project-tracker.md](docs/project-tracker.md)
+- [docs/decision-log-template.md](docs/decision-log-template.md)
+- [docs/threat-model-template.md](docs/threat-model-template.md)
+
+## Repository Standards
+
+- Documentation stays in English for public portfolio readability.
+- Sample data, screenshots, and exports must be anonymized before upload.
+- Markdown links inside the repository should use relative paths so they work in GitHub.
+- New additions should include recruiter-facing business value, not only technical notes.
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for branch, documentation, and review expectations.
 
 ## Next Move
 
