@@ -26,6 +26,20 @@
     },
     "enableStorageVersioning": {
       "value": true
+    },
+    "enableResourceDiagnostics": {
+      "value": true
+    },
+    "virtualNetworkAddressPrefixes": {
+      "value": [
+        "10.42.0.0/16"
+      ]
+    },
+    "managementSubnetAddressPrefix": {
+      "value": "10.42.1.0/24"
+    },
+    "workloadSubnetAddressPrefix": {
+      "value": "10.42.2.0/24"
     }
   }
 }

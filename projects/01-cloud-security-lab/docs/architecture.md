@@ -20,7 +20,8 @@ flowchart TD
     Entra --> CA["Conditional Access Policies"]
     Entra --> Signin["Sign-in and Audit Logs"]
     CA --> Apps["Azure Portal and Demo Workload"]
-    Apps --> Diag["Diagnostic Settings"]
+    Apps --> Net["VNet, Subnets, and NSGs"]
+    Net --> Diag["Diagnostic Settings"]
     Diag --> LA["Log Analytics Workspace"]
     Signin --> LA
     Azure["Azure Subscription Sandbox"] --> Defender["Defender for Cloud"]
@@ -57,22 +58,29 @@ flowchart TD
 - one low-cost Azure workload, such as a VM or App Service
 - optional storage account for sample logging and basic hardening examples
 
+### Network Layer
+
+- one sandbox `VNet` with management and workload subnets
+- `NSG`s attached at subnet level for future workload controls
+- service endpoints ready for basic storage-connected scenarios
+
 ## Resource Group Layout
 
 | Resource Group | Purpose | Example Resources |
 | --- | --- | --- |
 | `rg-identity-monitoring` | Monitoring and log collection | Log Analytics workspace, alerts |
 | `rg-security-operations` | Security tooling and workflow resources | Sentinel content, playbooks |
-| `rg-demo-workload` | Test workload for diagnostics and posture checks | VM, App Service, storage |
+| `rg-demo-workload` | Test workload for diagnostics and posture checks | VNet, NSGs, VM, App Service, storage |
 
 ## Data Flow Summary
 
 1. Test users authenticate through `Entra ID`.
 2. `Conditional Access` evaluates risk and control requirements.
-3. Sign-in, audit, and Azure activity logs flow into `Log Analytics`.
-4. `Defender for Cloud` contributes recommendations and posture data.
-5. `Microsoft Sentinel` correlates events and raises incidents.
-6. The analyst investigates and performs a documented response in the sandbox.
+3. Network and storage diagnostic settings send supported platform logs into `Log Analytics`.
+4. Sign-in, audit, and Azure activity logs flow into `Log Analytics`.
+5. `Defender for Cloud` contributes recommendations and posture data.
+6. `Microsoft Sentinel` correlates events and raises incidents.
+7. The analyst investigates and performs a documented response in the sandbox.
 
 ## Why This Design Works For A Portfolio
 

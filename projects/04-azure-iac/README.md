@@ -31,7 +31,8 @@ This project proves repeatability, operational maturity, and engineering discipl
 ## Current Implementation
 
 - `Bicep` is the first implemented path for the Azure baseline.
-- The initial scope creates the lab resource groups, a `Log Analytics workspace`, and a secure demo `Storage Account`.
+- The current scope creates the lab resource groups, a `Log Analytics workspace`, a `VNet` with two subnets, two `NSG`s, and a secure demo `Storage Account`.
+- Supported diagnostic settings are wired to `Log Analytics` for `NSG` and storage blob service logs.
 - The Bicep baseline is designed to support `01-cloud-security-lab`.
 
 ## Starter Docs

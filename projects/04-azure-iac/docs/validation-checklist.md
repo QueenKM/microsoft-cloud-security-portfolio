@@ -11,9 +11,14 @@
 
 - [ ] all three resource groups are created
 - [ ] `Log Analytics workspace` is deployed in the monitoring resource group
+- [ ] `Virtual Network` is deployed in the demo workload resource group
+- [ ] management and workload subnets are created with the expected address ranges
+- [ ] both subnets are associated with the expected `NSG`
+- [ ] `NSG` diagnostic settings send supported logs to `Log Analytics`
 - [ ] `Storage Account` is deployed in the demo workload resource group
 - [ ] storage blocks blob public access
 - [ ] storage enforces HTTPS and `TLS 1.2`
+- [ ] storage blob service diagnostic settings send supported logs to `Log Analytics`
 
 ## Operational Checks
 

@@ -5,17 +5,17 @@
 - `01-cloud-security-lab`: In progress, architecture and control docs started
 - `02-zero-trust-architecture-blueprint`: Scaffolding complete
 - `03-power-bi-azure-data-pipeline`: Scaffolding complete
-- `04-azure-iac`: In progress, Bicep baseline started
+- `04-azure-iac`: In progress, Bicep baseline and network foundation started
 - `05-cyber-risk-assessment-tool`: Scaffolding complete
 - `06-teams-governance-toolkit`: Scaffolding complete
 
 ## Immediate Backlog
 
-- [ ] Define Azure tenant and subscription boundaries for the sandbox.
 - [x] Define Azure tenant and subscription boundaries for the sandbox.
 - [x] Create the first version of the cloud security lab architecture diagram.
 - [x] List the exact Entra ID and Sentinel components to configure.
 - [x] Build the first Bicep baseline for the sandbox subscription.
+- [x] Extend the baseline with networking and diagnostic settings.
 - [ ] Choose the first dataset for the Power BI pipeline.
 - [ ] Decide whether the desktop risk tool will use `PySide6` or another GUI stack.
 - [ ] Draft the first Teams governance policy pack.

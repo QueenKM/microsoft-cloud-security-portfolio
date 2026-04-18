@@ -34,12 +34,31 @@ param storageSku string = 'Standard_LRS'
 @description('Enable blob versioning and soft delete for the demo storage account.')
 param enableStorageVersioning bool = true
 
+@description('Enable resource diagnostic settings that send supported logs to Log Analytics.')
+param enableResourceDiagnostics bool = true
+
+@description('Virtual network address space for the sandbox baseline.')
+param virtualNetworkAddressPrefixes array = [
+  '10.42.0.0/16'
+]
+
+@description('Address prefix for the management subnet.')
+param managementSubnetAddressPrefix string = '10.42.1.0/24'
+
+@description('Address prefix for the workload subnet.')
+param workloadSubnetAddressPrefix string = '10.42.2.0/24'
+
 var uniqueSuffix = take(uniqueString(subscription().subscriptionId, environmentName, location), 6)
 var monitoringResourceGroupName = 'rg-${workloadPrefix}-${environmentName}-identity-monitoring'
 var securityOperationsResourceGroupName = 'rg-${workloadPrefix}-${environmentName}-security-operations'
 var demoWorkloadResourceGroupName = 'rg-${workloadPrefix}-${environmentName}-demo-workload'
 var logAnalyticsWorkspaceName = 'law-${workloadPrefix}-${environmentName}-${uniqueSuffix}'
 var storageAccountName = toLower(take(replace('st${workloadPrefix}${environmentName}${uniqueSuffix}', '-', ''), 24))
+var virtualNetworkName = 'vnet-${workloadPrefix}-${environmentName}-core'
+var managementNetworkSecurityGroupName = 'nsg-${workloadPrefix}-${environmentName}-management'
+var workloadNetworkSecurityGroupName = 'nsg-${workloadPrefix}-${environmentName}-workload'
+var managementSubnetName = 'snet-management'
+var workloadSubnetName = 'snet-workload'
 var baselineTags = union({
   environment: environmentName
   managedBy: 'bicep'
@@ -91,13 +110,70 @@ module logAnalyticsWorkspace './modules/log-analytics-workspace.bicep' = {
   }
 }
 
+module managementNetworkSecurityGroup './modules/network-security-group.bicep' = {
+  name: 'managementNetworkSecurityGroupDeployment'
+  scope: resourceGroup(demoWorkloadResourceGroupName)
+  dependsOn: [
+    demoWorkloadResourceGroup
+    logAnalyticsWorkspace
+  ]
+  params: {
+    diagnosticWorkspaceId: logAnalyticsWorkspace.outputs.workspaceId
+    enableDiagnostics: enableResourceDiagnostics
+    location: location
+    name: managementNetworkSecurityGroupName
+    tags: baselineTags
+  }
+}
+
+module workloadNetworkSecurityGroup './modules/network-security-group.bicep' = {
+  name: 'workloadNetworkSecurityGroupDeployment'
+  scope: resourceGroup(demoWorkloadResourceGroupName)
+  dependsOn: [
+    demoWorkloadResourceGroup
+    logAnalyticsWorkspace
+  ]
+  params: {
+    diagnosticWorkspaceId: logAnalyticsWorkspace.outputs.workspaceId
+    enableDiagnostics: enableResourceDiagnostics
+    location: location
+    name: workloadNetworkSecurityGroupName
+    tags: baselineTags
+  }
+}
+
+module virtualNetwork './modules/virtual-network.bicep' = {
+  name: 'virtualNetworkDeployment'
+  scope: resourceGroup(demoWorkloadResourceGroupName)
+  dependsOn: [
+    demoWorkloadResourceGroup
+    managementNetworkSecurityGroup
+    workloadNetworkSecurityGroup
+  ]
+  params: {
+    addressPrefixes: virtualNetworkAddressPrefixes
+    location: location
+    managementNetworkSecurityGroupId: managementNetworkSecurityGroup.outputs.networkSecurityGroupId
+    managementSubnetAddressPrefix: managementSubnetAddressPrefix
+    managementSubnetName: managementSubnetName
+    name: virtualNetworkName
+    tags: baselineTags
+    workloadNetworkSecurityGroupId: workloadNetworkSecurityGroup.outputs.networkSecurityGroupId
+    workloadSubnetAddressPrefix: workloadSubnetAddressPrefix
+    workloadSubnetName: workloadSubnetName
+  }
+}
+
 module demoStorageAccount './modules/storage-account.bicep' = {
   name: 'demoStorageAccountDeployment'
   scope: resourceGroup(demoWorkloadResourceGroupName)
   dependsOn: [
     demoWorkloadResourceGroup
+    logAnalyticsWorkspace
   ]
   params: {
+    diagnosticWorkspaceId: logAnalyticsWorkspace.outputs.workspaceId
+    enableDiagnostics: enableResourceDiagnostics
     enableVersioning: enableStorageVersioning
     location: location
     storageAccountName: storageAccountName
@@ -111,5 +187,11 @@ output securityOperationsResourceGroupName string = securityOperationsResourceGr
 output demoWorkloadResourceGroupName string = demoWorkloadResourceGroupName
 output logAnalyticsWorkspaceName string = logAnalyticsWorkspace.outputs.workspaceName
 output logAnalyticsWorkspaceResourceId string = logAnalyticsWorkspace.outputs.workspaceId
+output virtualNetworkName string = virtualNetwork.outputs.virtualNetworkName
+output virtualNetworkResourceId string = virtualNetwork.outputs.virtualNetworkId
+output managementSubnetResourceId string = virtualNetwork.outputs.managementSubnetId
+output workloadSubnetResourceId string = virtualNetwork.outputs.workloadSubnetId
+output managementNetworkSecurityGroupResourceId string = managementNetworkSecurityGroup.outputs.networkSecurityGroupId
+output workloadNetworkSecurityGroupResourceId string = workloadNetworkSecurityGroup.outputs.networkSecurityGroupId
 output storageAccountName string = demoStorageAccount.outputs.storageAccountName
 output storageAccountResourceId string = demoStorageAccount.outputs.storageAccountId

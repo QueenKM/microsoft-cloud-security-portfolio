@@ -10,7 +10,11 @@ Deploy the first reusable Azure baseline for the portfolio using `Bicep` at subs
 - `rg-astera-sandbox-security-operations`
 - `rg-astera-sandbox-demo-workload`
 - one `Log Analytics workspace`
+- one `Virtual Network`
+- two subnets: management and workload
+- two `Network Security Groups`
 - one secure demo `Storage Account`
+- diagnostic settings for supported `NSG` and storage blob logs
 
 ## Prerequisites
 
@@ -50,6 +54,7 @@ az deployment sub create \
 - security operations resource group name
 - demo workload resource group name
 - Log Analytics workspace name
+- virtual network name
 - storage account name
 
 ## Next Steps After Deployment
@@ -57,7 +62,7 @@ az deployment sub create \
 1. Enable `Microsoft Sentinel` on the created workspace.
 2. Add Azure Activity and Entra connectors where available.
 3. Capture resource screenshots for the portfolio.
-4. Extend the baseline with networking, RBAC assignments, and a demo workload resource.
+4. Extend the baseline with RBAC assignments and a demo workload resource.
 
 ## Notes
 
