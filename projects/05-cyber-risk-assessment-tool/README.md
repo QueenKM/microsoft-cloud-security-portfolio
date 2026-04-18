@@ -6,50 +6,83 @@ Build a desktop application that helps users score cyber risks using impact and 
 
 ## Why This Project Matters
 
-This is the most distinctive project in the portfolio because it combines security knowledge with actual software delivery. It is practical for university use and strong on a CV.
+This is one of the most distinctive projects in the portfolio because it combines security knowledge with actual software delivery. It is practical for university work, useful in demonstrations, and strong on a CV because it shows product thinking rather than only cloud configuration.
 
-## Recommended Stack
+## Current Status
+
+`MVP in progress`
+
+The first runnable version uses `Python` and `PySide6` to provide:
+
+- a local risk register
+- impact, likelihood, and control-effectiveness scoring
+- residual risk calculation
+- a live 5x5 risk matrix
+- a sample ransomware scenario pack
+- JSON persistence and CSV export
+
+## Stack
 
 - `Python`
 - `PySide6`
-- `SQLite` or local JSON storage
-- PDF export library
-- Excel export library
+- local `JSON` storage
+- CSV export for the MVP
 
-## Core Scope
+## Run
 
-- risk register management
-- impact and likelihood scoring
-- weighted risk calculation
-- risk matrix visualization
-- scenario templates such as ransomware
-- export to PDF and Excel
+Create or activate a Python environment, then install requirements:
 
-## Deliverables
+```bash
+python3 -m pip install -r requirements.txt
+```
 
-- desktop UI
-- scoring engine
-- sample scenario pack
-- export templates
-- user guide
-- screenshots and short demo
+Start the app:
 
-## Build Phases
+```bash
+python3 app/main.py
+```
 
-1. Define the domain model and scoring rules.
-2. Build the MVP UI for creating and scoring risks.
-3. Add matrix visualization and scenario templates.
-4. Add export features and local persistence.
-5. Test, polish, and package the app.
+Optional smoke test:
+
+```bash
+QT_QPA_PLATFORM=offscreen python3 app/main.py --smoke-test
+```
+
+## MVP Features
+
+- create, edit, and delete risk entries
+- score risks on a 1 to 5 impact and likelihood scale
+- apply control-effectiveness weighting to calculate residual risk
+- classify risks as `Low`, `Medium`, `High`, or `Critical`
+- load a sample `ransomware` scenario pack
+- export the current register to CSV
+- save the register locally between sessions
+
+## Project Structure
+
+- [Application Entry Point](app/main.py)
+- [Risk Model](app/models.py)
+- [Scoring Engine](app/scoring.py)
+- [Persistence Layer](app/storage.py)
+- [Sample Scenario Pack](data/ransomware_scenario.json)
+- [Architecture Note](docs/architecture.md)
+- [User Guide](docs/user-guide.md)
 
 ## Evidence To Capture
 
-- main dashboard
-- risk matrix screen
-- ransomware scenario example
-- generated PDF or Excel export
+- main dashboard with risk table
+- risk matrix view
+- ransomware scenario loaded in the register
+- exported CSV example
 - short architecture note
+
+## Next Steps
+
+- add PDF and Excel export
+- add filtering and sorting for larger registers
+- add richer risk treatment workflow
+- package the app for easier demo use
 
 ## Portfolio Value
 
-This project helps you talk about security from both an analyst and builder perspective.
+This project helps you talk about security from both an analyst and builder perspective. It shows that you can take a risk-management concept and turn it into a usable application with real UX and data handling.

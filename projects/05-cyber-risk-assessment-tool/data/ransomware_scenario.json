@@ -1,0 +1,54 @@
+[
+  {
+    "title": "Privilege escalation through weak admin hygiene",
+    "category": "Ransomware",
+    "asset": "Identity and administration tier",
+    "scenario": "A threat actor reuses exposed credentials and reaches an overprivileged admin account.",
+    "owner": "Security Team",
+    "status": "Open",
+    "impact": 5,
+    "likelihood": 4,
+    "control_effectiveness": 20,
+    "existing_controls": "MFA enabled for some admins, quarterly access reviews",
+    "notes": "High-value risk because admin compromise increases blast radius across the environment."
+  },
+  {
+    "title": "Endpoint encryption by commodity ransomware",
+    "category": "Ransomware",
+    "asset": "Faculty laptop fleet",
+    "scenario": "Phishing leads to execution of ransomware on staff endpoints during term time.",
+    "owner": "Desktop Engineering",
+    "status": "Mitigating",
+    "impact": 4,
+    "likelihood": 4,
+    "control_effectiveness": 35,
+    "existing_controls": "Defender, mail filtering, endpoint isolation runbook",
+    "notes": "Residual score remains high because the teaching calendar limits downtime tolerance."
+  },
+  {
+    "title": "Backups unavailable during recovery",
+    "category": "Operational",
+    "asset": "Critical backup platform",
+    "scenario": "Backups are present but restoration tests are incomplete and recovery sequencing is unclear.",
+    "owner": "Infrastructure Team",
+    "status": "Open",
+    "impact": 5,
+    "likelihood": 3,
+    "control_effectiveness": 10,
+    "existing_controls": "Daily backup jobs, immutable copy for selected workloads",
+    "notes": "The main weakness is confidence in restoration and recovery time."
+  },
+  {
+    "title": "Sensitive student data exposed during incident handling",
+    "category": "Data Protection",
+    "asset": "Student records data set",
+    "scenario": "Emergency file-sharing during a ransomware event bypasses normal data handling controls.",
+    "owner": "Data Protection Officer",
+    "status": "Accepted",
+    "impact": 4,
+    "likelihood": 2,
+    "control_effectiveness": 40,
+    "existing_controls": "Sensitivity labels, retention guidance, limited emergency contacts",
+    "notes": "Accepted temporarily until the incident collaboration process is rewritten."
+  }
+]
