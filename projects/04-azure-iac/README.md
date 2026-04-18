@@ -28,6 +28,21 @@ This project proves repeatability, operational maturity, and engineering discipl
 - CI workflow
 - validation checklist
 
+## Current Implementation
+
+- `Bicep` is the first implemented path for the Azure baseline.
+- The initial scope creates the lab resource groups, a `Log Analytics workspace`, and a secure demo `Storage Account`.
+- The Bicep baseline is designed to support `01-cloud-security-lab`.
+
+## Starter Docs
+
+- [Deployment Guide](docs/deployment-guide.md)
+- [Validation Checklist](docs/validation-checklist.md)
+
+## Bicep Entry Point
+
+- [bicep/main.bicep](bicep/main.bicep)
+
 ## Build Phases
 
 1. Design the landing zone baseline.

@@ -42,6 +42,7 @@ This is the flagship project in the portfolio. It shows hands-on execution with 
 
 - [Implementation Plan](docs/implementation-plan.md)
 - [Architecture Overview](docs/architecture.md)
+- [Tenant And Subscription Boundaries](docs/tenant-subscription-boundaries.md)
 - [RBAC Model](docs/rbac-model.md)
 - [Conditional Access Matrix](docs/conditional-access-matrix.md)
 - [Sentinel Onboarding Checklist](docs/sentinel-onboarding-checklist.md)

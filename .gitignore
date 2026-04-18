@@ -28,3 +28,5 @@ crash.log
 *.log
 *.tmp
 *.bak
+
+projects/04-azure-iac/bicep/main.json

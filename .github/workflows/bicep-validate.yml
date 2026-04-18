@@ -1,0 +1,33 @@
+name: Bicep Validate
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/bicep-validate.yml"
+      - "projects/04-azure-iac/bicep/**/*.bicep"
+      - "projects/04-azure-iac/bicep/**/*.json"
+      - "projects/04-azure-iac/docs/**/*.md"
+      - "projects/01-cloud-security-lab/docs/tenant-subscription-boundaries.md"
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/bicep-validate.yml"
+      - "projects/04-azure-iac/bicep/**/*.bicep"
+      - "projects/04-azure-iac/bicep/**/*.json"
+      - "projects/04-azure-iac/docs/**/*.md"
+      - "projects/01-cloud-security-lab/docs/tenant-subscription-boundaries.md"
+
+jobs:
+  build-bicep:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Build Azure baseline Bicep template
+        uses: Azure/bicep-build-action@v1.0.1
+        with:
+          bicepFilePath: ./projects/04-azure-iac/bicep/main.bicep
+          outputFilePath: ./projects/04-azure-iac/bicep/main.json

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "value": "westeurope"
+    },
+    "environmentName": {
+      "value": "sandbox"
+    },
+    "workloadPrefix": {
+      "value": "astera"
+    },
+    "tags": {
+      "value": {
+        "costCenter": "portfolio",
+        "dataClassification": "lab",
+        "owner": "QueenKM"
+      }
+    },
+    "logAnalyticsRetentionInDays": {
+      "value": 30
+    },
+    "storageSku": {
+      "value": "Standard_LRS"
+    },
+    "enableStorageVersioning": {
+      "value": true
+    }
+  }
+}
