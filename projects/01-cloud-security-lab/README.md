@@ -19,6 +19,27 @@ See:
 - [Live Sandbox Status](docs/live-sandbox-status.md)
 - [Artifacts](artifacts/README.md)
 
+## Quick Links
+
+- [Architecture Overview](docs/architecture.md)
+- [Portal Execution Checklist](docs/portal-execution-checklist.md)
+- [Alert Strategy](docs/alert-strategy.md)
+- [Incident Walkthrough](docs/incident-walkthrough.md)
+- [Live Sandbox Status](docs/live-sandbox-status.md)
+- [Artifacts](artifacts/README.md)
+
+## At A Glance
+
+| Area | Status |
+| --- | --- |
+| Azure baseline deployment | Live |
+| Log Analytics workspace | Live |
+| Azure Monitor alert rules | Live |
+| NSG and storage diagnostics | Live |
+| Microsoft Sentinel onboarding | Live |
+| Conditional Access validation | Blocked by tenant privileges |
+| `AzureActivity` evidence capture | Waiting for ingestion and retest |
+
 ## Core Scope
 
 - Entra ID tenant hardening

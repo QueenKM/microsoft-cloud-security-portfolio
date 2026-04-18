@@ -36,6 +36,15 @@ It combines security and governance metrics such as:
 - connects cloud security data to executive reporting
 - creates an interview-ready analytics story tied to the rest of the portfolio
 
+## Quick Links
+
+- [Business Questions](docs/business-questions.md)
+- [Star Schema](docs/star-schema.md)
+- [Power Query Transformations](docs/power-query-transformations.md)
+- [DAX Measures](docs/dax-measures.md)
+- [Dashboard Design](docs/dashboard-design.md)
+- [Dashboard Wireframe](artifacts/01-dashboard-wireframe.md)
+
 ## Project Structure
 
 - sample dataset generator: [scripts/generate_sample_dataset.py](scripts/generate_sample_dataset.py)
@@ -67,6 +76,15 @@ Dimensions:
 Fact table:
 
 - `FactSecurityGovernanceDaily`
+
+## Dataset Snapshot
+
+| Table | Purpose | Approximate Size |
+| --- | --- | --- |
+| `dim_date.csv` | Calendar slicing and time intelligence | 90 rows |
+| `dim_department.csv` | Business ownership and risk tier | 5 rows |
+| `dim_workload.csv` | Workload drilldown | 5 rows |
+| `fact_security_governance_daily.csv` | KPI-ready operational fact table | 2250 rows |
 
 ## Key Business Questions
 

@@ -44,6 +44,24 @@ The blueprint assumes that every access request must be evaluated through the sa
 - [STRIDE Threat Model: Privileged Admin Access](threat-models/stride-privileged-admin-access.md)
 - [Artifacts Folder](artifacts/README.md)
 
+## Quick Links
+
+- [Reference Diagram](diagrams/zero-trust-reference.md)
+- [Identity And Device Access Flow](diagrams/identity-device-access-flow.md)
+- [Policy Pack](docs/policy-pack.md)
+- [Implementation Roadmap](docs/implementation-roadmap.md)
+- [STRIDE Threat Model](threat-models/stride-privileged-admin-access.md)
+
+## Blueprint Snapshot
+
+| Layer | Core Decision |
+| --- | --- |
+| Identity | Centralize identity controls and reduce standing privilege |
+| Devices | Require trust signals for sensitive access paths |
+| Applications | Apply conditional access and app segmentation by risk |
+| Data | Use classification and container-level protections |
+| Operations | Route detections and triage through a common monitoring layer |
+
 ## Scope
 
 ### In Scope

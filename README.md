@@ -5,6 +5,18 @@
 
 This repository is a structured portfolio workspace for six Microsoft and Azure focused projects. The goal is to build a strong, interview-ready body of work that demonstrates cloud security, architecture, governance, data analytics, and practical software delivery.
 
+## Quick Links
+
+- flagship live lab: [Project 01](projects/01-cloud-security-lab/README.md)
+- architecture blueprint: [Project 02](projects/02-zero-trust-architecture-blueprint/README.md)
+- analytics story: [Project 03](projects/03-power-bi-azure-data-pipeline/README.md)
+- practical app build: [Project 05](projects/05-cyber-risk-assessment-tool/README.md)
+- M365 governance pack: [Project 06](projects/06-teams-governance-toolkit/README.md)
+
+## Portfolio Preview
+
+![Portfolio Preview](shared-assets/portfolio-preview.png)
+
 ## Portfolio Goals
 
 - Build one flagship Azure security lab with real detections and response flows.
@@ -30,6 +42,27 @@ See [docs/portfolio-scenario.md](docs/portfolio-scenario.md) for the shared assu
 | `04-azure-iac` | Infrastructure automation | Terraform, Bicep, GitHub Actions | `AZ-104`, `AZ-305` |
 | `05-cyber-risk-assessment-tool` | Practical security software | Python GUI, risk scoring, PDF/Excel export | Security + software portfolio |
 | `06-teams-governance-toolkit` | M365 governance repo | Teams policies, retention, guest access | `MS-700` |
+
+## Current Snapshot
+
+| Project | Current Status | Best Visible Artifact |
+| --- | --- | --- |
+| `01-cloud-security-lab` | Live Azure sandbox deployed, evidence capture in progress | Sentinel and Azure Monitor screenshots |
+| `02-zero-trust-architecture-blueprint` | Blueprint docs, decisions, and STRIDE model in place | Architecture diagrams and policy pack |
+| `03-power-bi-azure-data-pipeline` | Dataset, star schema, DAX pack, and dashboard preview ready | `02-dashboard-preview.png` |
+| `04-azure-iac` | Bicep landing zone and monitoring baseline implemented | subscription-scope Bicep baseline |
+| `05-cyber-risk-assessment-tool` | Runnable PySide6 MVP with exports and demo screenshot | `01-main-dashboard.png` |
+| `06-teams-governance-toolkit` | Governance pack and policy assets ready | `02-governance-overview.png` |
+
+## Featured Previews
+
+### Cloud Security Lab
+
+![Cloud Security Lab Sentinel overview](projects/01-cloud-security-lab/artifacts/screenshots/07-sentinel-overview.png)
+
+### Cyber Risk Assessment Tool
+
+![Cyber Risk Assessment Tool screenshot](projects/05-cyber-risk-assessment-tool/artifacts/01-main-dashboard.png)
 
 ## Suggested Build Order
 

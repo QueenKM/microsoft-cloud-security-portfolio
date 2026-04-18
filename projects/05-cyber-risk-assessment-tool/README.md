@@ -21,6 +21,17 @@ The first runnable version uses `Python` and `PySide6` to provide:
 - a sample ransomware scenario pack
 - JSON persistence and CSV export
 
+## Screenshot Preview
+
+![Cyber Risk Assessment Tool main dashboard](artifacts/01-main-dashboard.png)
+
+## Quick Links
+
+- [Architecture Note](docs/architecture.md)
+- [User Guide](docs/user-guide.md)
+- [Sample Scenario Pack](data/ransomware_scenario.json)
+- [Artifacts](artifacts/README.md)
+
 ## Stack
 
 - `Python`
@@ -58,15 +69,23 @@ QT_QPA_PLATFORM=offscreen python3 app/main.py --smoke-test
 - export the current register to CSV
 - save the register locally between sessions
 
+## Feature Snapshot
+
+| Capability | Current State |
+| --- | --- |
+| Local risk register | Working |
+| Residual risk scoring | Working |
+| 5x5 matrix visualization | Working |
+| Sample ransomware scenario | Working |
+| CSV export | Working |
+| PDF export | Planned |
+| Excel export | Planned |
+
 ## Demo Artifacts
 
 - [Generated screenshot](artifacts/01-main-dashboard.png)
 - [Generated CSV export](artifacts/01-risk-register-export.csv)
 - [Artifacts note](artifacts/README.md)
-
-### Screenshot Preview
-
-![Cyber Risk Assessment Tool main dashboard](artifacts/01-main-dashboard.png)
 
 ## Project Structure
 

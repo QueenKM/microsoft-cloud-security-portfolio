@@ -15,6 +15,15 @@ This project shows that the portfolio goes beyond pure cloud deployment work. It
 - demonstrates architect-style thinking, not just portal execution
 - creates reusable runbooks, templates, and approval patterns for `MS-700` style scenarios
 
+## Quick Links
+
+- [Governance Policy Pack](docs/governance-policy-pack.md)
+- [Operating Model](docs/operating-model.md)
+- [Implementation Checklist](docs/implementation-checklist.md)
+- [Owner Quick Start](docs/owner-quick-start.md)
+- [Lifecycle Checklist](docs/lifecycle-checklist.md)
+- [Guest Access Decision Tree](diagrams/guest-access-decision-tree.md)
+
 ## Governance Position
 
 The toolkit assumes that uncontrolled self-service collaboration creates three common risks:
