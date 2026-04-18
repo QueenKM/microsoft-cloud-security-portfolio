@@ -3,6 +3,7 @@
 ## Current Visible Artifact
 
 - governance one-pager: [01-governance-one-pager.md](01-governance-one-pager.md)
+- rendered governance preview: [02-governance-overview.png](02-governance-overview.png)
 
 ## Supporting Walkthrough Assets
 

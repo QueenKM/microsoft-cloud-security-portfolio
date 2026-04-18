@@ -43,6 +43,7 @@ The design therefore favors:
 - [Team Request Template](templates/team-request-template.md)
 - [Quarterly Review Template](templates/team-review-template.md)
 - [Governance One-Pager](artifacts/01-governance-one-pager.md)
+- governance preview generator: [scripts/generate_governance_preview.py](scripts/generate_governance_preview.py)
 
 ## Governance Snapshot
 
@@ -73,6 +74,8 @@ flowchart TD
 ```
 
 ## Visible Artifacts
+
+![Teams Governance Overview](artifacts/02-governance-overview.png)
 
 - policy one-pager for interview walkthroughs: [01-governance-one-pager.md](artifacts/01-governance-one-pager.md)
 - decision tree for guest versus shared channel use: [guest-access-decision-tree.md](diagrams/guest-access-decision-tree.md)

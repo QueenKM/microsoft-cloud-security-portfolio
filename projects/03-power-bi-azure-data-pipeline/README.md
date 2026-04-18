@@ -47,7 +47,8 @@ It combines security and governance metrics such as:
 - dashboard design brief: [docs/dashboard-design.md](docs/dashboard-design.md)
 - demo checklist: [docs/demo-checklist.md](docs/demo-checklist.md)
 - SQL DDL: [sql/star-schema.sql](sql/star-schema.sql)
-- visible artifact: [artifacts/01-dashboard-wireframe.md](artifacts/01-dashboard-wireframe.md)
+- dashboard preview generator: [scripts/generate_dashboard_preview.py](scripts/generate_dashboard_preview.py)
+- visible artifacts: [artifacts](artifacts)
 
 ## Data Model
 
@@ -77,7 +78,9 @@ Fact table:
 
 ## Visible Artifact
 
-The project includes a GitHub-friendly dashboard wireframe in [artifacts/01-dashboard-wireframe.md](artifacts/01-dashboard-wireframe.md) so the reporting story is visible even before a `.pbix` file is added.
+The project includes a GitHub-friendly dashboard wireframe and a rendered preview image so the reporting story is visible even before a `.pbix` file is added.
+
+![Power BI Dashboard Preview](artifacts/02-dashboard-preview.png)
 
 ## How To Use The Dataset
 
@@ -85,6 +88,12 @@ The project includes a GitHub-friendly dashboard wireframe in [artifacts/01-dash
 
 ```bash
 python3 scripts/generate_sample_dataset.py
+```
+
+1. Render the dashboard preview artifact:
+
+```bash
+python3 scripts/generate_dashboard_preview.py
 ```
 
 1. Open `Power BI Desktop`.
@@ -101,6 +110,7 @@ After running the generator, you will have:
 - `dim_department.csv`
 - `dim_workload.csv`
 - `fact_security_governance_daily.csv`
+- `artifacts/02-dashboard-preview.png`
 
 ## Official References
 
