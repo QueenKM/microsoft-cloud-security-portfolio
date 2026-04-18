@@ -1,0 +1,6 @@
+WorkloadKey,WorkloadName,PlatformDomain,PrimaryPersona
+1,Entra ID,Identity,IT Administrator
+2,Sentinel,Security Operations,Security Analyst
+3,Microsoft Teams,Collaboration,Department Owner
+4,Azure,Cloud Infrastructure,IT Administrator
+5,Endpoints,Device Security,Security Analyst

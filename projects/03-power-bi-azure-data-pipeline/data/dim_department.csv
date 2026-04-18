@@ -1,0 +1,6 @@
+DepartmentKey,DepartmentName,RiskTier,ExecutiveOwner
+1,IT,High,CIO
+2,Finance,High,CFO
+3,HR,High,HR Director
+4,Student Services,Medium,Student Services Director
+5,Research Office,High,VP Research
