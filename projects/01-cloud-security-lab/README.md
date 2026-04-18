@@ -8,6 +8,17 @@ Build an end-to-end Azure security lab in a sandbox subscription that demonstrat
 
 This is the flagship project in the portfolio. It shows hands-on execution with Microsoft security tooling and creates the strongest interview story for cloud security roles.
 
+## Current Status
+
+`In progress`
+
+The baseline environment is now live in an `Azure for Students` subscription in `Sweden Central`. Core monitoring, diagnostics, alerting, and `Microsoft Sentinel` onboarding are completed. Conditional Access validation is currently blocked by `Microsoft Entra` privileges, and `AzureActivity` query validation is pending ingestion after subscription activity log export was enabled.
+
+See:
+
+- [Live Sandbox Status](docs/live-sandbox-status.md)
+- [Artifacts](artifacts/README.md)
+
 ## Core Scope
 
 - Entra ID tenant hardening
@@ -52,6 +63,22 @@ This is the flagship project in the portfolio. It shows hands-on execution with 
 - [Sentinel Onboarding Checklist](docs/sentinel-onboarding-checklist.md)
 - [Starter KQL Detections](docs/kql-detections.md)
 - [Safe Attack Simulation Plan](docs/attack-simulation.md)
+- [Live Sandbox Status](docs/live-sandbox-status.md)
+
+## Live Evidence Highlights
+
+The first live screenshots already captured for this project include:
+
+- Log Analytics workspace overview
+- Azure Monitor alert rules list
+- RBAC alert rule overview
+- NSG diagnostic settings
+- storage blob diagnostic settings
+- subscription activity log export
+- Sentinel overview
+- Sentinel data connectors
+
+These files are tracked in [artifacts/screenshots](artifacts/screenshots).
 
 ## Build Phases
 
@@ -69,6 +96,12 @@ This is the flagship project in the portfolio. It shows hands-on execution with 
 - Log Analytics query results
 - RBAC assignment model
 - attack timeline from event to response
+
+## Known Constraints
+
+- `Conditional Access` is currently blocked by insufficient `Microsoft Entra` privileges in the student tenant.
+- Subscription activity log export was enabled on `April 18, 2026` and requires ingestion time before `AzureActivity` detections can be validated.
+- `SigninLogs` evidence may remain unavailable unless the tenant later exposes the required `Entra` telemetry and permissions.
 
 ## Cert Alignment
 
