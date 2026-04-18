@@ -7,7 +7,7 @@
 - `03-power-bi-azure-data-pipeline`: Scaffolding complete
 - `04-azure-iac`: In progress, Bicep baseline, network, workload, RBAC, and alert layer started
 - `05-cyber-risk-assessment-tool`: In progress, PySide6 MVP, scoring engine, sample scenario, and CSV export started
-- `06-teams-governance-toolkit`: Scaffolding complete
+- `06-teams-governance-toolkit`: In progress, governance policy pack, operating model, templates, and lifecycle assets started
 
 ## Immediate Backlog
 
@@ -29,7 +29,8 @@
 - [x] Decide whether the desktop risk tool will use `PySide6` or another GUI stack.
 - [x] Build the first Cyber Risk Assessment Tool MVP with local scoring and CSV export.
 - [x] Generate the first Cyber Risk Assessment Tool screenshot and sample export artifacts.
-- [ ] Draft the first Teams governance policy pack.
+- [x] Draft the first Teams governance policy pack.
+- [x] Add the first Teams governance operating model, templates, and visible artifact.
 
 ## Quality Bar
 
