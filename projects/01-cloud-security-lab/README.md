@@ -80,6 +80,24 @@ The first live screenshots already captured for this project include:
 
 These files are tracked in [artifacts/screenshots](artifacts/screenshots).
 
+## Evidence Gallery
+
+### Log Analytics Workspace
+
+![Log Analytics workspace overview](artifacts/screenshots/02-log-analytics-workspace-overview.png)
+
+### Azure Monitor Alert Rules
+
+![Azure Monitor alert rules list](artifacts/screenshots/03-azure-monitor-alert-rules-list.png)
+
+### NSG Diagnostics
+
+![NSG diagnostic settings](artifacts/screenshots/05-nsg-diagnostics-settings.png)
+
+### Sentinel Overview
+
+![Microsoft Sentinel overview](artifacts/screenshots/07-sentinel-overview.png)
+
 ## Build Phases
 
 1. Create the sandbox structure and define admin roles.
