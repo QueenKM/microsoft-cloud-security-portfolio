@@ -18,6 +18,7 @@
 - [x] Extend the baseline with networking and diagnostic settings.
 - [x] Add an optional demo workload and initial Azure RBAC pattern.
 - [x] Add initial Azure Monitor alerting assets and screenshot instructions.
+- [x] Add operator-facing portal and incident walkthrough guides.
 - [ ] Choose the first dataset for the Power BI pipeline.
 - [ ] Decide whether the desktop risk tool will use `PySide6` or another GUI stack.
 - [ ] Draft the first Teams governance policy pack.

@@ -43,6 +43,8 @@ This is the flagship project in the portfolio. It shows hands-on execution with 
 - [Implementation Plan](docs/implementation-plan.md)
 - [Architecture Overview](docs/architecture.md)
 - [Alert Strategy](docs/alert-strategy.md)
+- [Portal Execution Checklist](docs/portal-execution-checklist.md)
+- [Incident Walkthrough](docs/incident-walkthrough.md)
 - [Screenshot Runbook](docs/screenshot-runbook.md)
 - [Tenant And Subscription Boundaries](docs/tenant-subscription-boundaries.md)
 - [RBAC Model](docs/rbac-model.md)
