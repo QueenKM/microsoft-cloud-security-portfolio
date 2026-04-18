@@ -27,6 +27,8 @@ The following live screenshots were captured from the Azure for Students sandbox
 - `06-subscription-activity-log-export.png`
 - `07-sentinel-overview.png`
 - `07-sentinel-data-connectors.png`
+- `09-kql-nsg-change-results.png`
+- `10-azure-monitor-nsg-alert-fired.png`
 
 Repository copies are redacted or cropped where needed so public GitHub artifacts do not expose subscription-specific identifiers.
 
@@ -40,5 +42,4 @@ These screenshots are useful to explain the build journey and blockers, but shou
 
 - `04-role-assignment-alert-configuration.png`
 - `08-subscription-activity-log-nsg-change.png`
-- `09-kql-nsg-change-results.png`
 - `10-kql-failed-signins-results.png`, only if Entra sign-in telemetry becomes available

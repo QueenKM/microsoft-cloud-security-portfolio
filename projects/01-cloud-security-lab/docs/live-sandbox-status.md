@@ -37,10 +37,29 @@ Headline evidence already collected:
 - [06-subscription-activity-log-export.png](../artifacts/screenshots/06-subscription-activity-log-export.png)
 - [07-sentinel-overview.png](../artifacts/screenshots/07-sentinel-overview.png)
 - [07-sentinel-data-connectors.png](../artifacts/screenshots/07-sentinel-data-connectors.png)
+- [09-kql-nsg-change-results.png](../artifacts/screenshots/09-kql-nsg-change-results.png)
+- [10-azure-monitor-nsg-alert-fired.png](../artifacts/screenshots/10-azure-monitor-nsg-alert-fired.png)
 
 Supporting troubleshooting evidence:
 
 - [06-subscription-activity-log-export-missing.png](../artifacts/screenshots/06-subscription-activity-log-export-missing.png)
+
+## Validation Results
+
+## NSG Change Detection
+
+The live sandbox now has end-to-end validation for the `NSG Or Security Rule Changes` detection path.
+
+Observed result:
+
+- a temporary NSG rule was created and removed in the sandbox
+- `AzureActivity` returned `securityRules/write` and `securityRules/delete` events for the target resource group
+- the `NSG Or Security Rule Changes` scheduled query alert fired in `Azure Monitor`
+
+Impact:
+
+- the project now includes live proof of both telemetry ingestion and alert generation
+- the remaining work is no longer about core monitoring validation
 
 ## Current Blockers
 
@@ -57,29 +76,12 @@ Impact:
 - the project can document the intended Conditional Access design
 - live Conditional Access screenshots are pending either higher privilege or a different tenant
 
-### AzureActivity Validation Window
-
-The subscription activity log export was initially missing and was created later on `2026-04-18`.
-
-Observed state:
-
-- `AzureActivity` queries returned no rows before the subscription activity log diagnostic setting was created
-- the export path now points to `law-astera-sandbox-b6izcc`
-
-Impact:
-
-- platform detections should be validated only after the expected ingestion window
-- a fresh NSG change test should be generated after the export has had time to populate the workspace
-
 ## Next Validation Steps
 
-1. Wait for the subscription activity log export ingestion window to pass.
-2. Create and remove one temporary NSG rule in the sandbox.
-3. Query `AzureActivity` for the NSG write and delete operations.
-4. Capture:
-   - `08-subscription-activity-log-nsg-change.png`
-   - `09-kql-nsg-change-results.png`
-5. Check whether the `NSG Or Security Rule Changes` alert fires and capture one alert or incident view if available.
+1. Capture `Conditional Access` evidence if tenant privilege is later granted.
+2. Optionally capture `08-subscription-activity-log-nsg-change.png` as extra portal evidence.
+3. Optionally capture a Sentinel incident or additional alert timeline view.
+4. Optionally add Defender for Cloud screenshots if the service is later enabled in the same sandbox.
 
 ## Interview Framing
 
@@ -92,3 +94,4 @@ This project already demonstrates:
 - practical troubleshooting of region policy restrictions, access blockers, and telemetry pipeline timing
 
 The remaining work is focused on final detection proof, not on building the lab from scratch.
+The main remaining gap is identity-policy evidence, not monitoring capability.

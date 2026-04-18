@@ -12,7 +12,7 @@ This is the flagship project in the portfolio. It shows hands-on execution with 
 
 `In progress`
 
-The baseline environment is now live in an `Azure for Students` subscription in `Sweden Central`. Core monitoring, diagnostics, alerting, and `Microsoft Sentinel` onboarding are completed. Conditional Access validation is currently blocked by `Microsoft Entra` privileges, and `AzureActivity` query validation is pending ingestion after subscription activity log export was enabled.
+The baseline environment is now live in an `Azure for Students` subscription in `Sweden Central`. Core monitoring, diagnostics, alerting, `AzureActivity` validation, and `Microsoft Sentinel` onboarding are completed. Conditional Access validation is currently blocked by `Microsoft Entra` privileges.
 
 See:
 
@@ -37,8 +37,9 @@ See:
 | Azure Monitor alert rules | Live |
 | NSG and storage diagnostics | Live |
 | Microsoft Sentinel onboarding | Live |
+| `AzureActivity` detection proof | Validated live |
+| Azure Monitor fired alert proof | Validated live |
 | Conditional Access validation | Blocked by tenant privileges |
-| `AzureActivity` evidence capture | Waiting for ingestion and retest |
 
 ## Core Scope
 
@@ -98,6 +99,8 @@ The first live screenshots already captured for this project include:
 - subscription activity log export
 - Sentinel overview
 - Sentinel data connectors
+- KQL proof of NSG write and delete activity in `AzureActivity`
+- fired `NSG Or Security Rule Changes` alert in `Azure Monitor`
 
 These files are tracked in [artifacts/screenshots](artifacts/screenshots).
 
@@ -119,6 +122,14 @@ These files are tracked in [artifacts/screenshots](artifacts/screenshots).
 
 ![Microsoft Sentinel overview](artifacts/screenshots/07-sentinel-overview.png)
 
+### KQL Detection Proof
+
+![KQL NSG change results](artifacts/screenshots/09-kql-nsg-change-results.png)
+
+### Fired Alert Proof
+
+![Azure Monitor NSG alert fired](artifacts/screenshots/10-azure-monitor-nsg-alert-fired.png)
+
 ## Build Phases
 
 1. Create the sandbox structure and define admin roles.
@@ -132,14 +143,12 @@ These files are tracked in [artifacts/screenshots](artifacts/screenshots).
 - Conditional Access policy screens
 - Defender secure score or recommendations
 - Sentinel incident queue
-- Log Analytics query results
 - RBAC assignment model
 - attack timeline from event to response
 
 ## Known Constraints
 
 - `Conditional Access` is currently blocked by insufficient `Microsoft Entra` privileges in the student tenant.
-- Subscription activity log export was enabled on `April 18, 2026` and requires ingestion time before `AzureActivity` detections can be validated.
 - `SigninLogs` evidence may remain unavailable unless the tenant later exposes the required `Entra` telemetry and permissions.
 
 ## Cert Alignment

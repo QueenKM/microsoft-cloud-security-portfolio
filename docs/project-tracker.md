@@ -23,7 +23,7 @@
 - [x] Add initial Zero Trust diagrams, decision logs, and STRIDE model.
 - [x] Deploy the Cloud Security Lab baseline into an Azure for Students subscription.
 - [x] Capture the first live monitoring, alerting, diagnostics, and Sentinel screenshots.
-- [ ] Wait for subscription activity log export ingestion, then capture NSG change evidence in `AzureActivity`.
+- [x] Wait for subscription activity log export ingestion, then capture NSG change evidence in `AzureActivity`.
 - [ ] Capture a Conditional Access blocker note or live policy evidence, depending on future Entra privileges.
 - [x] Choose the first dataset for the Power BI pipeline.
 - [x] Build the first sample dataset, star schema, and DAX design pack.
