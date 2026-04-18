@@ -48,6 +48,44 @@ param managementSubnetAddressPrefix string = '10.42.1.0/24'
 @description('Address prefix for the workload subnet.')
 param workloadSubnetAddressPrefix string = '10.42.2.0/24'
 
+@description('Deploy the optional demo Linux virtual machine.')
+param deployDemoVirtualMachine bool = false
+
+@description('Virtual machine size for the optional demo workload.')
+param demoVirtualMachineSize string = 'Standard_B1s'
+
+@description('Administrator username for the optional demo virtual machine.')
+param demoVirtualMachineAdminUsername string = 'azureuser'
+
+@description('SSH public key for the optional demo virtual machine. Required when deployDemoVirtualMachine is true.')
+@secure()
+param demoVirtualMachineSshPublicKey string = ''
+
+@description('Create a public IP for the optional demo virtual machine.')
+param demoVirtualMachinePublicIpEnabled bool = false
+
+@description('Principal ID for the IT admin persona or group. Leave empty to skip RBAC assignment.')
+param itAdminPrincipalId string = ''
+
+@description('Principal type for the IT admin assignment.')
+@allowed([
+  'User'
+  'Group'
+  'ServicePrincipal'
+])
+param itAdminPrincipalType string = 'Group'
+
+@description('Principal ID for the security analyst persona or group. Leave empty to skip RBAC assignment.')
+param securityAnalystPrincipalId string = ''
+
+@description('Principal type for the security analyst assignment.')
+@allowed([
+  'User'
+  'Group'
+  'ServicePrincipal'
+])
+param securityAnalystPrincipalType string = 'Group'
+
 var uniqueSuffix = take(uniqueString(subscription().subscriptionId, environmentName, location), 6)
 var monitoringResourceGroupName = 'rg-${workloadPrefix}-${environmentName}-identity-monitoring'
 var securityOperationsResourceGroupName = 'rg-${workloadPrefix}-${environmentName}-security-operations'
@@ -59,6 +97,11 @@ var managementNetworkSecurityGroupName = 'nsg-${workloadPrefix}-${environmentNam
 var workloadNetworkSecurityGroupName = 'nsg-${workloadPrefix}-${environmentName}-workload'
 var managementSubnetName = 'snet-management'
 var workloadSubnetName = 'snet-workload'
+var demoVirtualMachineName = 'vm-${workloadPrefix}-${environmentName}-${uniqueSuffix}'
+var readerRoleDefinitionId = 'acdd72a7-3385-48ef-bd42-f606fba81ae7'
+var contributorRoleDefinitionId = 'b24988ac-6180-42a0-ab88-20f7382dd24c'
+var monitoringContributorRoleDefinitionId = '749f88d5-cbae-40b8-bcfc-e573ddc772fa'
+var logAnalyticsReaderRoleDefinitionId = '73c42c96-874c-492b-b04d-ab87d138a893'
 var baselineTags = union({
   environment: environmentName
   managedBy: 'bicep'
@@ -182,6 +225,96 @@ module demoStorageAccount './modules/storage-account.bicep' = {
   }
 }
 
+module demoVirtualMachine './modules/linux-virtual-machine.bicep' = if (deployDemoVirtualMachine) {
+  name: 'demoVirtualMachineDeployment'
+  scope: resourceGroup(demoWorkloadResourceGroupName)
+  dependsOn: [
+    demoWorkloadResourceGroup
+    virtualNetwork
+  ]
+  params: {
+    adminUsername: demoVirtualMachineAdminUsername
+    enablePublicIp: demoVirtualMachinePublicIpEnabled
+    location: location
+    name: demoVirtualMachineName
+    size: demoVirtualMachineSize
+    sshPublicKey: demoVirtualMachineSshPublicKey
+    subnetResourceId: virtualNetwork.outputs.workloadSubnetId
+    tags: baselineTags
+  }
+}
+
+module itAdminWorkloadRole './modules/role-assignment.bicep' = if (itAdminPrincipalId != '') {
+  name: 'itAdminWorkloadRoleAssignment'
+  scope: resourceGroup(demoWorkloadResourceGroupName)
+  dependsOn: [
+    demoWorkloadResourceGroup
+  ]
+  params: {
+    assignmentGuidSeed: 'it-admin-demo-workload-contributor'
+    principalId: itAdminPrincipalId
+    principalType: itAdminPrincipalType
+    roleDefinitionId: contributorRoleDefinitionId
+  }
+}
+
+module itAdminMonitoringRole './modules/role-assignment.bicep' = if (itAdminPrincipalId != '') {
+  name: 'itAdminMonitoringRoleAssignment'
+  scope: resourceGroup(monitoringResourceGroupName)
+  dependsOn: [
+    monitoringResourceGroup
+  ]
+  params: {
+    assignmentGuidSeed: 'it-admin-monitoring-contributor'
+    principalId: itAdminPrincipalId
+    principalType: itAdminPrincipalType
+    roleDefinitionId: monitoringContributorRoleDefinitionId
+  }
+}
+
+module securityAnalystDemoReaderRole './modules/role-assignment.bicep' = if (securityAnalystPrincipalId != '') {
+  name: 'securityAnalystDemoReaderRoleAssignment'
+  scope: resourceGroup(demoWorkloadResourceGroupName)
+  dependsOn: [
+    demoWorkloadResourceGroup
+  ]
+  params: {
+    assignmentGuidSeed: 'security-analyst-demo-reader'
+    principalId: securityAnalystPrincipalId
+    principalType: securityAnalystPrincipalType
+    roleDefinitionId: readerRoleDefinitionId
+  }
+}
+
+module securityAnalystSecurityOperationsReaderRole './modules/role-assignment.bicep' = if (securityAnalystPrincipalId != '') {
+  name: 'securityAnalystSecurityOperationsReaderRoleAssignment'
+  scope: resourceGroup(securityOperationsResourceGroupName)
+  dependsOn: [
+    securityOperationsResourceGroup
+  ]
+  params: {
+    assignmentGuidSeed: 'security-analyst-security-operations-reader'
+    principalId: securityAnalystPrincipalId
+    principalType: securityAnalystPrincipalType
+    roleDefinitionId: readerRoleDefinitionId
+  }
+}
+
+module securityAnalystLogAnalyticsReaderRole './modules/role-assignment.bicep' = if (securityAnalystPrincipalId != '') {
+  name: 'securityAnalystLogAnalyticsReaderRoleAssignment'
+  scope: resourceGroup(monitoringResourceGroupName)
+  dependsOn: [
+    monitoringResourceGroup
+    logAnalyticsWorkspace
+  ]
+  params: {
+    assignmentGuidSeed: 'security-analyst-log-analytics-reader'
+    principalId: securityAnalystPrincipalId
+    principalType: securityAnalystPrincipalType
+    roleDefinitionId: logAnalyticsReaderRoleDefinitionId
+  }
+}
+
 output monitoringResourceGroupName string = monitoringResourceGroupName
 output securityOperationsResourceGroupName string = securityOperationsResourceGroupName
 output demoWorkloadResourceGroupName string = demoWorkloadResourceGroupName
@@ -195,3 +328,5 @@ output managementNetworkSecurityGroupResourceId string = managementNetworkSecuri
 output workloadNetworkSecurityGroupResourceId string = workloadNetworkSecurityGroup.outputs.networkSecurityGroupId
 output storageAccountName string = demoStorageAccount.outputs.storageAccountName
 output storageAccountResourceId string = demoStorageAccount.outputs.storageAccountId
+output demoVirtualMachineName string = deployDemoVirtualMachine ? demoVirtualMachine.outputs.virtualMachineName : ''
+output demoVirtualMachineResourceId string = deployDemoVirtualMachine ? demoVirtualMachine.outputs.virtualMachineId : ''

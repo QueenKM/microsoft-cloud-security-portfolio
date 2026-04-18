@@ -40,6 +40,33 @@
     },
     "workloadSubnetAddressPrefix": {
       "value": "10.42.2.0/24"
+    },
+    "deployDemoVirtualMachine": {
+      "value": false
+    },
+    "demoVirtualMachineSize": {
+      "value": "Standard_B1s"
+    },
+    "demoVirtualMachineAdminUsername": {
+      "value": "azureuser"
+    },
+    "demoVirtualMachineSshPublicKey": {
+      "value": ""
+    },
+    "demoVirtualMachinePublicIpEnabled": {
+      "value": false
+    },
+    "itAdminPrincipalId": {
+      "value": ""
+    },
+    "itAdminPrincipalType": {
+      "value": "Group"
+    },
+    "securityAnalystPrincipalId": {
+      "value": ""
+    },
+    "securityAnalystPrincipalType": {
+      "value": "Group"
     }
   }
 }

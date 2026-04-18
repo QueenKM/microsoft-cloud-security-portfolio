@@ -43,6 +43,8 @@ Use a simple role model that demonstrates separation of duties without making th
 | Subscription | `Reader` | security analyst group | review Azure resources and configurations |
 | Resource group | `Contributor` | IT admin group on `rg-demo-workload` only | operate the demo workload |
 | Resource group | `Monitoring Contributor` | IT admin group on monitoring scope | manage alerts and diagnostics |
+| Resource group | `Reader` | security analyst group on demo and security operations scopes | inspect resources without changing them |
+| Resource group | `Log Analytics Reader` | security analyst group on monitoring scope | query workspace data without modifying settings |
 | Sentinel workspace | `Microsoft Sentinel Reader` or equivalent analyst role | security analyst group | investigate incidents |
 | Sentinel workspace | `Microsoft Sentinel Contributor` | IT admin or security engineer role | create rules and content |
 

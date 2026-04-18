@@ -15,6 +15,8 @@ Deploy the first reusable Azure baseline for the portfolio using `Bicep` at subs
 - two `Network Security Groups`
 - one secure demo `Storage Account`
 - diagnostic settings for supported `NSG` and storage blob logs
+- one optional Linux `VM` workload
+- optional `RBAC` assignments for IT admin and security analyst principals
 
 ## Prerequisites
 
@@ -48,6 +50,16 @@ az deployment sub create \
   --parameters @./projects/04-azure-iac/bicep/parameters/sandbox.parameters.json
 ```
 
+## Optional Parameters To Override
+
+Before enabling the demo workload or RBAC:
+
+- set `deployDemoVirtualMachine=true`
+- provide `demoVirtualMachineSshPublicKey`
+- optionally set `demoVirtualMachinePublicIpEnabled=true` for temporary admin access
+- provide `itAdminPrincipalId` and `securityAnalystPrincipalId` to create Azure RBAC assignments
+- change `itAdminPrincipalType` or `securityAnalystPrincipalType` if you use users or service principals instead of groups
+
 ## Expected Outputs
 
 - monitoring resource group name
@@ -56,13 +68,14 @@ az deployment sub create \
 - Log Analytics workspace name
 - virtual network name
 - storage account name
+- optional demo virtual machine name
 
 ## Next Steps After Deployment
 
 1. Enable `Microsoft Sentinel` on the created workspace.
 2. Add Azure Activity and Entra connectors where available.
 3. Capture resource screenshots for the portfolio.
-4. Extend the baseline with RBAC assignments and a demo workload resource.
+4. If needed, redeploy with the optional demo VM and RBAC principal IDs enabled.
 
 ## Notes
 

@@ -19,6 +19,9 @@
 - [ ] storage blocks blob public access
 - [ ] storage enforces HTTPS and `TLS 1.2`
 - [ ] storage blob service diagnostic settings send supported logs to `Log Analytics`
+- [ ] optional Linux `VM` deploys successfully when enabled
+- [ ] optional `VM` lands in the workload subnet
+- [ ] optional `RBAC` assignments are created only when principal IDs are supplied
 
 ## Operational Checks
 
@@ -26,3 +29,4 @@
 - [ ] screenshots are captured for the repo
 - [ ] workspace is ready for Sentinel enablement
 - [ ] cost-impacting settings are understood before expanding the lab
+- [ ] temporary public IP access, if used, is removed after testing

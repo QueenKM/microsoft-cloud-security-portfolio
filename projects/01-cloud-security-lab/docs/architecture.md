@@ -55,7 +55,7 @@ flowchart TD
 
 ### Demo Workload Layer
 
-- one low-cost Azure workload, such as a VM or App Service
+- one low-cost Azure workload, starting with an optional Linux VM
 - optional storage account for sample logging and basic hardening examples
 
 ### Network Layer
@@ -80,7 +80,8 @@ flowchart TD
 4. Sign-in, audit, and Azure activity logs flow into `Log Analytics`.
 5. `Defender for Cloud` contributes recommendations and posture data.
 6. `Microsoft Sentinel` correlates events and raises incidents.
-7. The analyst investigates and performs a documented response in the sandbox.
+7. The analyst investigates workload, platform, and identity signals together.
+8. The analyst performs a documented response in the sandbox.
 
 ## Why This Design Works For A Portfolio
 
