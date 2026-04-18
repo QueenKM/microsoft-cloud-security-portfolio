@@ -1,0 +1,49 @@
+# Project 04: Infrastructure as Code for Azure
+
+## Goal
+
+Automate the deployment of a secure Azure baseline using `Bicep`, `Terraform`, or both.
+
+## Why This Project Matters
+
+This project proves repeatability, operational maturity, and engineering discipline. It also strengthens the security lab by making the infrastructure reproducible.
+
+## Core Scope
+
+- resource group and naming model
+- virtual network and subnets
+- network security groups
+- storage account
+- VM or App Service
+- diagnostic settings and logging
+- RBAC assignment model
+- optional CI validation with GitHub Actions
+
+## Deliverables
+
+- Bicep or Terraform modules
+- environment parameter files
+- architecture diagram
+- deployment guide
+- CI workflow
+- validation checklist
+
+## Build Phases
+
+1. Design the landing zone baseline.
+2. Build the first deployment in one IaC language.
+3. Add security defaults, diagnostics, and tags.
+4. Validate deployment and document the workflow.
+5. Add CI and optionally recreate the same baseline in the second language.
+
+## Evidence To Capture
+
+- deployment tree
+- code structure screenshots
+- successful deployment output
+- CI run screenshot
+- before/after security improvements
+
+## Cert Alignment
+
+`AZ-104`, `AZ-305`
