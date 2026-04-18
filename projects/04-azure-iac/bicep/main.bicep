@@ -86,6 +86,18 @@ param securityAnalystPrincipalId string = ''
 ])
 param securityAnalystPrincipalType string = 'Group'
 
+@description('Deploy Azure Monitor scheduled query alerts for the lab baseline.')
+param enablePlatformAlertRules bool = true
+
+@description('Optional email address for the alert action group. Leave empty to create rules without notifications.')
+param alertNotificationEmail string = ''
+
+@description('Evaluation frequency for the scheduled query alerts.')
+param alertEvaluationFrequency string = 'PT5M'
+
+@description('Lookback window for the scheduled query alerts.')
+param alertWindowSize string = 'PT15M'
+
 var uniqueSuffix = take(uniqueString(subscription().subscriptionId, environmentName, location), 6)
 var monitoringResourceGroupName = 'rg-${workloadPrefix}-${environmentName}-identity-monitoring'
 var securityOperationsResourceGroupName = 'rg-${workloadPrefix}-${environmentName}-security-operations'
@@ -98,10 +110,14 @@ var workloadNetworkSecurityGroupName = 'nsg-${workloadPrefix}-${environmentName}
 var managementSubnetName = 'snet-management'
 var workloadSubnetName = 'snet-workload'
 var demoVirtualMachineName = 'vm-${workloadPrefix}-${environmentName}-${uniqueSuffix}'
+var alertActionGroupName = 'ag-${workloadPrefix}-${environmentName}-ops'
 var readerRoleDefinitionId = 'acdd72a7-3385-48ef-bd42-f606fba81ae7'
 var contributorRoleDefinitionId = 'b24988ac-6180-42a0-ab88-20f7382dd24c'
 var monitoringContributorRoleDefinitionId = '749f88d5-cbae-40b8-bcfc-e573ddc772fa'
 var logAnalyticsReaderRoleDefinitionId = '73c42c96-874c-492b-b04d-ab87d138a893'
+var rbacRoleAssignmentAlertQuery = loadTextContent('../../01-cloud-security-lab/queries/01-rbac-role-assignment-changes.kql')
+var nsgChangeAlertQuery = loadTextContent('../../01-cloud-security-lab/queries/02-nsg-security-rule-changes.kql')
+var diagnosticSettingsChangeAlertQuery = loadTextContent('../../01-cloud-security-lab/queries/03-diagnostic-settings-changes.kql')
 var baselineTags = union({
   environment: environmentName
   managedBy: 'bicep'
@@ -315,6 +331,91 @@ module securityAnalystLogAnalyticsReaderRole './modules/role-assignment.bicep' =
   }
 }
 
+module alertActionGroup './modules/action-group.bicep' = if (enablePlatformAlertRules && alertNotificationEmail != '') {
+  name: 'alertActionGroupDeployment'
+  scope: resourceGroup(monitoringResourceGroupName)
+  dependsOn: [
+    monitoringResourceGroup
+  ]
+  params: {
+    emailAddress: alertNotificationEmail
+    name: alertActionGroupName
+    shortName: 'asteraops'
+  }
+}
+
+module rbacRoleAssignmentAlert './modules/scheduled-query-alert.bicep' = if (enablePlatformAlertRules) {
+  name: 'rbacRoleAssignmentAlertDeployment'
+  scope: resourceGroup(monitoringResourceGroupName)
+  dependsOn: [
+    monitoringResourceGroup
+    logAnalyticsWorkspace
+    alertActionGroup
+  ]
+  params: {
+    actionGroupResourceIds: alertNotificationEmail != '' ? [alertActionGroup.outputs.actionGroupId] : []
+    description: 'Detects Azure RBAC role assignment changes in the lab subscription.'
+    displayName: 'RBAC Role Assignment Changes'
+    evaluationFrequency: alertEvaluationFrequency
+    location: location
+    name: 'al-${workloadPrefix}-${environmentName}-rbac-changes'
+    query: rbacRoleAssignmentAlertQuery
+    scopeResourceId: logAnalyticsWorkspace.outputs.workspaceId
+    severity: 2
+    tags: baselineTags
+    threshold: 0
+    windowSize: alertWindowSize
+  }
+}
+
+module nsgSecurityRuleChangeAlert './modules/scheduled-query-alert.bicep' = if (enablePlatformAlertRules) {
+  name: 'nsgSecurityRuleChangeAlertDeployment'
+  scope: resourceGroup(monitoringResourceGroupName)
+  dependsOn: [
+    monitoringResourceGroup
+    logAnalyticsWorkspace
+    alertActionGroup
+  ]
+  params: {
+    actionGroupResourceIds: alertNotificationEmail != '' ? [alertActionGroup.outputs.actionGroupId] : []
+    description: 'Detects network security group and security rule changes in the lab subscription.'
+    displayName: 'NSG Or Security Rule Changes'
+    evaluationFrequency: alertEvaluationFrequency
+    location: location
+    name: 'al-${workloadPrefix}-${environmentName}-nsg-changes'
+    query: nsgChangeAlertQuery
+    scopeResourceId: logAnalyticsWorkspace.outputs.workspaceId
+    severity: 2
+    tags: baselineTags
+    threshold: 0
+    windowSize: alertWindowSize
+  }
+}
+
+module diagnosticSettingsChangeAlert './modules/scheduled-query-alert.bicep' = if (enablePlatformAlertRules) {
+  name: 'diagnosticSettingsChangeAlertDeployment'
+  scope: resourceGroup(monitoringResourceGroupName)
+  dependsOn: [
+    monitoringResourceGroup
+    logAnalyticsWorkspace
+    alertActionGroup
+  ]
+  params: {
+    actionGroupResourceIds: alertNotificationEmail != '' ? [alertActionGroup.outputs.actionGroupId] : []
+    description: 'Detects diagnostic settings changes that could reduce visibility in the lab.'
+    displayName: 'Diagnostic Settings Changes'
+    evaluationFrequency: alertEvaluationFrequency
+    location: location
+    name: 'al-${workloadPrefix}-${environmentName}-diag-changes'
+    query: diagnosticSettingsChangeAlertQuery
+    scopeResourceId: logAnalyticsWorkspace.outputs.workspaceId
+    severity: 1
+    tags: baselineTags
+    threshold: 0
+    windowSize: alertWindowSize
+  }
+}
+
 output monitoringResourceGroupName string = monitoringResourceGroupName
 output securityOperationsResourceGroupName string = securityOperationsResourceGroupName
 output demoWorkloadResourceGroupName string = demoWorkloadResourceGroupName
@@ -330,3 +431,4 @@ output storageAccountName string = demoStorageAccount.outputs.storageAccountName
 output storageAccountResourceId string = demoStorageAccount.outputs.storageAccountId
 output demoVirtualMachineName string = deployDemoVirtualMachine ? demoVirtualMachine.outputs.virtualMachineName : ''
 output demoVirtualMachineResourceId string = deployDemoVirtualMachine ? demoVirtualMachine.outputs.virtualMachineId : ''
+output alertActionGroupName string = alertNotificationEmail != '' ? alertActionGroup.outputs.actionGroupName : ''

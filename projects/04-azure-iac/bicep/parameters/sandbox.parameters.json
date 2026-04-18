@@ -67,6 +67,18 @@
     },
     "securityAnalystPrincipalType": {
       "value": "Group"
+    },
+    "enablePlatformAlertRules": {
+      "value": true
+    },
+    "alertNotificationEmail": {
+      "value": ""
+    },
+    "alertEvaluationFrequency": {
+      "value": "PT5M"
+    },
+    "alertWindowSize": {
+      "value": "PT15M"
     }
   }
 }

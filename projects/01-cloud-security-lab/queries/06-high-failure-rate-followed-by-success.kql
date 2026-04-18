@@ -1,0 +1,13 @@
+let FailedWindow =
+    SigninLogs
+    | where ResultType != 0
+    | summarize FailedAttempts = count() by UserPrincipalName, IPAddress, bin(TimeGenerated, 30m);
+let SuccessWindow =
+    SigninLogs
+    | where ResultType == 0
+    | summarize SuccessfulSignIns = count() by UserPrincipalName, IPAddress, bin(TimeGenerated, 30m);
+FailedWindow
+| join kind=inner SuccessWindow on UserPrincipalName, IPAddress, TimeGenerated
+| where FailedAttempts >= 5 and SuccessfulSignIns >= 1
+| project TimeGenerated, UserPrincipalName, IPAddress, FailedAttempts, SuccessfulSignIns
+| order by TimeGenerated desc

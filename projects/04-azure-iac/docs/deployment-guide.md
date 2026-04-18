@@ -17,6 +17,7 @@ Deploy the first reusable Azure baseline for the portfolio using `Bicep` at subs
 - diagnostic settings for supported `NSG` and storage blob logs
 - one optional Linux `VM` workload
 - optional `RBAC` assignments for IT admin and security analyst principals
+- Azure Monitor scheduled query alerts for core platform changes
 
 ## Prerequisites
 
@@ -59,6 +60,8 @@ Before enabling the demo workload or RBAC:
 - optionally set `demoVirtualMachinePublicIpEnabled=true` for temporary admin access
 - provide `itAdminPrincipalId` and `securityAnalystPrincipalId` to create Azure RBAC assignments
 - change `itAdminPrincipalType` or `securityAnalystPrincipalType` if you use users or service principals instead of groups
+- optionally provide `alertNotificationEmail` to create an email-backed action group
+- tune `alertEvaluationFrequency` and `alertWindowSize` if you want slower or faster alerting
 
 ## Expected Outputs
 
@@ -69,13 +72,15 @@ Before enabling the demo workload or RBAC:
 - virtual network name
 - storage account name
 - optional demo virtual machine name
+- optional alert action group name
 
 ## Next Steps After Deployment
 
 1. Enable `Microsoft Sentinel` on the created workspace.
 2. Add Azure Activity and Entra connectors where available.
-3. Capture resource screenshots for the portfolio.
-4. If needed, redeploy with the optional demo VM and RBAC principal IDs enabled.
+3. Verify the scheduled query alert rules in `Azure Monitor`.
+4. Capture resource screenshots for the portfolio.
+5. If needed, redeploy with the optional demo VM, RBAC principal IDs, and alert email enabled.
 
 ## Notes
 

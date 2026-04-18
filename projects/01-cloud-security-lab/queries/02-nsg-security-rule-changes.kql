@@ -1,0 +1,10 @@
+AzureActivity
+| where CategoryValue =~ "Administrative"
+| where OperationNameValue has_any (
+    "Microsoft.Network/networkSecurityGroups/write",
+    "Microsoft.Network/networkSecurityGroups/delete",
+    "Microsoft.Network/networkSecurityGroups/securityRules/write",
+    "Microsoft.Network/networkSecurityGroups/securityRules/delete"
+)
+| project TimeGenerated, Caller, OperationNameValue, ActivityStatusValue, ResourceGroup, ResourceId, CorrelationId
+| order by TimeGenerated desc

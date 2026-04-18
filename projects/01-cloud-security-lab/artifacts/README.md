@@ -7,6 +7,8 @@ Store screenshots, exports, and demo evidence for the project in this folder.
 - Conditional Access screenshots
 - Sentinel connector screenshots
 - incident screenshots
+- Azure Monitor alert rule screenshots
+- action group screenshots
 - KQL result screenshots
 - architecture exports
 - redacted response notes

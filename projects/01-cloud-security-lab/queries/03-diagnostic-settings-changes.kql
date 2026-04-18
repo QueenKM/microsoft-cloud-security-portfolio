@@ -1,0 +1,8 @@
+AzureActivity
+| where CategoryValue =~ "Administrative"
+| where OperationNameValue has_any (
+    "Microsoft.Insights/diagnosticSettings/write",
+    "Microsoft.Insights/diagnosticSettings/delete"
+)
+| project TimeGenerated, Caller, OperationNameValue, ActivityStatusValue, ResourceGroup, ResourceId, CorrelationId
+| order by TimeGenerated desc

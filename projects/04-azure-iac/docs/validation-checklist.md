@@ -22,6 +22,8 @@
 - [ ] optional Linux `VM` deploys successfully when enabled
 - [ ] optional `VM` lands in the workload subnet
 - [ ] optional `RBAC` assignments are created only when principal IDs are supplied
+- [ ] scheduled query alerts are created in the monitoring resource group
+- [ ] optional action group is created only when an alert email address is supplied
 
 ## Operational Checks
 
@@ -30,3 +32,4 @@
 - [ ] workspace is ready for Sentinel enablement
 - [ ] cost-impacting settings are understood before expanding the lab
 - [ ] temporary public IP access, if used, is removed after testing
+- [ ] role assignment, NSG, and diagnostics alert rules are visible in `Azure Monitor`

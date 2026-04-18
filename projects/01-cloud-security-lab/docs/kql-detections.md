@@ -2,6 +2,17 @@
 
 These are lab-friendly starter queries for detecting suspicious identity activity. Adjust thresholds for your tenant size and log volume.
 
+## Query Files
+
+The reusable query assets also exist as standalone files:
+
+- [01-rbac-role-assignment-changes.kql](../queries/01-rbac-role-assignment-changes.kql)
+- [02-nsg-security-rule-changes.kql](../queries/02-nsg-security-rule-changes.kql)
+- [03-diagnostic-settings-changes.kql](../queries/03-diagnostic-settings-changes.kql)
+- [04-failed-signins-by-user.kql](../queries/04-failed-signins-by-user.kql)
+- [05-failed-signins-by-ip.kql](../queries/05-failed-signins-by-ip.kql)
+- [06-high-failure-rate-followed-by-success.kql](../queries/06-high-failure-rate-followed-by-success.kql)
+
 ## Failed Sign-Ins By User
 
 ```kusto

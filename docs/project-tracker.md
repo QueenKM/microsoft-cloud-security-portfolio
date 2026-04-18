@@ -5,7 +5,7 @@
 - `01-cloud-security-lab`: In progress, architecture and control docs started
 - `02-zero-trust-architecture-blueprint`: Scaffolding complete
 - `03-power-bi-azure-data-pipeline`: Scaffolding complete
-- `04-azure-iac`: In progress, Bicep baseline, network foundation, and optional workload layer started
+- `04-azure-iac`: In progress, Bicep baseline, network, workload, RBAC, and alert layer started
 - `05-cyber-risk-assessment-tool`: Scaffolding complete
 - `06-teams-governance-toolkit`: Scaffolding complete
 
@@ -17,6 +17,7 @@
 - [x] Build the first Bicep baseline for the sandbox subscription.
 - [x] Extend the baseline with networking and diagnostic settings.
 - [x] Add an optional demo workload and initial Azure RBAC pattern.
+- [x] Add initial Azure Monitor alerting assets and screenshot instructions.
 - [ ] Choose the first dataset for the Power BI pipeline.
 - [ ] Decide whether the desktop risk tool will use `PySide6` or another GUI stack.
 - [ ] Draft the first Teams governance policy pack.
