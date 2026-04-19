@@ -40,10 +40,14 @@ It combines security and governance metrics such as:
 
 - [Business Questions](docs/business-questions.md)
 - [Star Schema](docs/star-schema.md)
+- [Power BI Desktop Build Guide](docs/power-bi-desktop-build-guide.md)
 - [Power Query Transformations](docs/power-query-transformations.md)
 - [DAX Measures](docs/dax-measures.md)
 - [Dashboard Design](docs/dashboard-design.md)
+- [Screenshot Runbook](docs/screenshot-runbook.md)
+- [Sample Insights](docs/sample-insights.md)
 - [Dashboard Wireframe](artifacts/01-dashboard-wireframe.md)
+- [Artifacts](artifacts/README.md)
 
 ## Project Structure
 
@@ -54,7 +58,10 @@ It combines security and governance metrics such as:
 - Power Query approach: [docs/power-query-transformations.md](docs/power-query-transformations.md)
 - DAX catalogue: [docs/dax-measures.md](docs/dax-measures.md)
 - dashboard design brief: [docs/dashboard-design.md](docs/dashboard-design.md)
+- Power BI Desktop build guide: [docs/power-bi-desktop-build-guide.md](docs/power-bi-desktop-build-guide.md)
 - demo checklist: [docs/demo-checklist.md](docs/demo-checklist.md)
+- screenshot runbook: [docs/screenshot-runbook.md](docs/screenshot-runbook.md)
+- sample insight summary: [docs/sample-insights.md](docs/sample-insights.md)
 - SQL DDL: [sql/star-schema.sql](sql/star-schema.sql)
 - dashboard preview generator: [scripts/generate_dashboard_preview.py](scripts/generate_dashboard_preview.py)
 - visible artifacts: [artifacts](artifacts)
@@ -100,6 +107,17 @@ The project includes a GitHub-friendly dashboard wireframe and a rendered previe
 
 ![Power BI Dashboard Preview](artifacts/02-dashboard-preview.png)
 
+## What To Add Next In Power BI Desktop
+
+When you open the sample dataset in `Power BI Desktop`, the highest-value visible additions are:
+
+- model view screenshot
+- Power Query transformation screenshot
+- final dashboard screenshot
+- optional short slicer interaction GIF
+
+Use [docs/screenshot-runbook.md](docs/screenshot-runbook.md) for the exact filenames.
+
 ## How To Use The Dataset
 
 1. Generate or refresh the sample CSVs:
@@ -119,6 +137,8 @@ python3 scripts/generate_dashboard_preview.py
 3. Build relationships according to [docs/star-schema.md](docs/star-schema.md).
 4. Add measures from [docs/dax-measures.md](docs/dax-measures.md).
 5. Recreate the dashboard layout described in [docs/dashboard-design.md](docs/dashboard-design.md).
+6. Follow the exact report build sequence in [docs/power-bi-desktop-build-guide.md](docs/power-bi-desktop-build-guide.md).
+7. Capture the final evidence files listed in [artifacts/README.md](artifacts/README.md).
 
 ## Generated Files
 
@@ -129,6 +149,13 @@ After running the generator, you will have:
 - `dim_workload.csv`
 - `fact_security_governance_daily.csv`
 - `artifacts/02-dashboard-preview.png`
+
+## Demo Support
+
+- [Power BI Desktop Build Guide](docs/power-bi-desktop-build-guide.md)
+- [Screenshot Runbook](docs/screenshot-runbook.md)
+- [Sample Insights](docs/sample-insights.md)
+- [Artifacts](artifacts/README.md)
 
 ## Official References
 
