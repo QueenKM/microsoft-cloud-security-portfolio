@@ -10,7 +10,7 @@ This is one of the most distinctive projects in the portfolio because it combine
 
 ## Current Status
 
-`MVP in progress`
+`MVP complete and demo-ready`
 
 The first runnable version uses `Python` and `PySide6` to provide:
 
@@ -19,7 +19,7 @@ The first runnable version uses `Python` and `PySide6` to provide:
 - residual risk calculation
 - a live 5x5 risk matrix
 - a sample ransomware scenario pack
-- JSON persistence and CSV export
+- JSON persistence and multi-format reporting export
 
 ## Screenshot Preview
 
@@ -28,6 +28,7 @@ The first runnable version uses `Python` and `PySide6` to provide:
 ## Quick Links
 
 - [Architecture Note](docs/architecture.md)
+- [Demo Checklist](docs/demo-checklist.md)
 - [User Guide](docs/user-guide.md)
 - [Sample Scenario Pack](data/ransomware_scenario.json)
 - [Artifacts](artifacts/README.md)
@@ -37,7 +38,7 @@ The first runnable version uses `Python` and `PySide6` to provide:
 - `Python`
 - `PySide6`
 - local `JSON` storage
-- CSV export for the MVP
+- `CSV`, `XLSX`, and `PDF` export
 
 ## Run
 
@@ -66,7 +67,7 @@ QT_QPA_PLATFORM=offscreen python3 app/main.py --smoke-test
 - apply control-effectiveness weighting to calculate residual risk
 - classify risks as `Low`, `Medium`, `High`, or `Critical`
 - load a sample `ransomware` scenario pack
-- export the current register to CSV
+- export the current register to `CSV`, `Excel`, and `PDF`
 - save the register locally between sessions
 
 ## Feature Snapshot
@@ -78,13 +79,15 @@ QT_QPA_PLATFORM=offscreen python3 app/main.py --smoke-test
 | 5x5 matrix visualization | Working |
 | Sample ransomware scenario | Working |
 | CSV export | Working |
-| PDF export | Planned |
-| Excel export | Planned |
+| PDF export | Working |
+| Excel export | Working |
 
 ## Demo Artifacts
 
 - [Generated screenshot](artifacts/01-main-dashboard.png)
 - [Generated CSV export](artifacts/01-risk-register-export.csv)
+- [Generated Excel export](artifacts/01-risk-register-export.xlsx)
+- [Generated PDF export](artifacts/01-risk-register-export.pdf)
 - [Artifacts note](artifacts/README.md)
 
 ## Project Structure
@@ -95,6 +98,7 @@ QT_QPA_PLATFORM=offscreen python3 app/main.py --smoke-test
 - [Persistence Layer](app/storage.py)
 - [Sample Scenario Pack](data/ransomware_scenario.json)
 - [Architecture Note](docs/architecture.md)
+- [Demo Checklist](docs/demo-checklist.md)
 - [User Guide](docs/user-guide.md)
 
 ## Evidence To Capture
@@ -102,12 +106,11 @@ QT_QPA_PLATFORM=offscreen python3 app/main.py --smoke-test
 - main dashboard with risk table
 - risk matrix view
 - ransomware scenario loaded in the register
-- exported CSV example
+- exported `CSV`, `Excel`, and `PDF` examples
 - short architecture note
 
-## Next Steps
+## Optional Future Enhancements
 
-- add PDF and Excel export
 - add filtering and sorting for larger registers
 - add richer risk treatment workflow
 - package the app for easier demo use

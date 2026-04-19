@@ -8,6 +8,21 @@ Automate the deployment of a secure Azure baseline using `Bicep`, `Terraform`, o
 
 This project proves repeatability, operational maturity, and engineering discipline. It also strengthens the security lab by making the infrastructure reproducible.
 
+## Recruiter Value
+
+- shows that the Azure lab is reproducible, not click-built
+- demonstrates modular Bicep design and deployment discipline
+- connects infrastructure choices to monitoring and security outcomes
+- gives you a clean `AZ-104` and `AZ-305` talking point
+
+## Quick Links
+
+- [Deployment Guide](docs/deployment-guide.md)
+- [Validation Checklist](docs/validation-checklist.md)
+- [Demo Checklist](docs/demo-checklist.md)
+- [Artifacts](artifacts/README.md)
+- [Bicep Entry Point](bicep/main.bicep)
+
 ## Core Scope
 
 - resource group and naming model
@@ -28,6 +43,10 @@ This project proves repeatability, operational maturity, and engineering discipl
 - CI workflow
 - validation checklist
 
+## Preview
+
+![Azure IaC baseline overview](artifacts/01-iac-baseline-overview.png)
+
 ## Current Implementation
 
 - `Bicep` is the first implemented path for the Azure baseline.
@@ -41,10 +60,7 @@ This project proves repeatability, operational maturity, and engineering discipl
 
 - [Deployment Guide](docs/deployment-guide.md)
 - [Validation Checklist](docs/validation-checklist.md)
-
-## Bicep Entry Point
-
-- [bicep/main.bicep](bicep/main.bicep)
+- [Demo Checklist](docs/demo-checklist.md)
 
 ## Build Phases
 

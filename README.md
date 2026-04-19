@@ -47,11 +47,11 @@ See [docs/portfolio-scenario.md](docs/portfolio-scenario.md) for the shared assu
 
 | Project | Current Status | Best Visible Artifact |
 | --- | --- | --- |
-| `01-cloud-security-lab` | Live Azure sandbox deployed, evidence capture in progress | Sentinel and Azure Monitor screenshots |
+| `01-cloud-security-lab` | Live Azure sandbox deployed with validated KQL detection and fired alert evidence | Sentinel and Azure Monitor screenshots |
 | `02-zero-trust-architecture-blueprint` | Blueprint docs, decisions, and STRIDE model in place | Architecture diagrams and policy pack |
 | `03-power-bi-azure-data-pipeline` | Dataset, star schema, DAX pack, and dashboard preview ready | `02-dashboard-preview.png` |
-| `04-azure-iac` | Bicep landing zone and monitoring baseline implemented | subscription-scope Bicep baseline |
-| `05-cyber-risk-assessment-tool` | Runnable PySide6 MVP with exports and demo screenshot | `01-main-dashboard.png` |
+| `04-azure-iac` | Bicep landing zone, monitoring baseline, and visible IaC overview artifact ready | `01-iac-baseline-overview.png` |
+| `05-cyber-risk-assessment-tool` | Runnable PySide6 MVP with `CSV`, `Excel`, and `PDF` exports | `01-main-dashboard.png` |
 | `06-teams-governance-toolkit` | Governance pack and policy assets ready | `02-governance-overview.png` |
 
 ## Featured Previews
@@ -116,6 +116,6 @@ Each project should eventually contain:
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for branch, documentation, and review expectations.
 
-## Next Move
+## External Constraints
 
-The best first implementation step is to build the baseline of `01-cloud-security-lab` and let that project produce identities, logs, alerts, and security controls that can feed the rest of the portfolio.
+The portfolio is now demo-ready. The main remaining gap is external to the repo: `Conditional Access` validation in `01-cloud-security-lab` is blocked by student-tenant `Microsoft Entra` privileges, even though the design and intended policy set are documented.

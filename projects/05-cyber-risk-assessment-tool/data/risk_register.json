@@ -1,6 +1,6 @@
 [
   {
-    "identifier": "e8ddfa73-0fac-43ef-abce-969526e15b8b",
+    "identifier": "dff7fe26-0aed-4628-bdea-7932a97b9189",
     "title": "Privilege escalation through weak admin hygiene",
     "category": "Ransomware",
     "asset": "Identity and administration tier",
@@ -14,7 +14,7 @@
     "existing_controls": "MFA enabled for some admins, quarterly access reviews"
   },
   {
-    "identifier": "32d39b94-69ec-44ae-8c00-763fad5ad9c2",
+    "identifier": "12f2892c-437e-4ca6-bb8e-5f340cf9ef7e",
     "title": "Endpoint encryption by commodity ransomware",
     "category": "Ransomware",
     "asset": "Faculty laptop fleet",
@@ -28,7 +28,7 @@
     "existing_controls": "Defender, mail filtering, endpoint isolation runbook"
   },
   {
-    "identifier": "07fc10df-65fa-40ef-a8d0-96f6e3db14bc",
+    "identifier": "b2358f51-05c1-4daf-9e32-54a9e1abaffe",
     "title": "Backups unavailable during recovery",
     "category": "Operational",
     "asset": "Critical backup platform",
@@ -42,7 +42,7 @@
     "existing_controls": "Daily backup jobs, immutable copy for selected workloads"
   },
   {
-    "identifier": "87ef5c80-d999-49fe-bcc9-d43e01d7de0a",
+    "identifier": "4fa1ba8d-e7e4-4744-885d-ce84a79283bd",
     "title": "Sensitive student data exposed during incident handling",
     "category": "Data Protection",
     "asset": "Student records data set",

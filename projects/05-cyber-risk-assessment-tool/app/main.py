@@ -39,6 +39,7 @@ from scoring import (
     summarize_risks,
 )
 from storage import export_csv, load_risks, load_scenario, save_risks
+from storage import export_pdf, export_xlsx
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DATA_PATH = PROJECT_ROOT / "data" / "risk_register.json"
@@ -172,7 +173,18 @@ class MainWindow(QMainWindow):
         load_button.clicked.connect(self._load_sample_scenario)
         export_button = QPushButton("Export CSV")
         export_button.clicked.connect(self._export_csv)
-        for button in (new_button, delete_button, load_button, export_button):
+        export_xlsx_button = QPushButton("Export Excel")
+        export_xlsx_button.clicked.connect(self._export_xlsx)
+        export_pdf_button = QPushButton("Export PDF")
+        export_pdf_button.clicked.connect(self._export_pdf)
+        for button in (
+            new_button,
+            delete_button,
+            load_button,
+            export_button,
+            export_xlsx_button,
+            export_pdf_button,
+        ):
             left_button_row.addWidget(button)
         left_layout.addLayout(left_button_row)
 
@@ -416,6 +428,36 @@ class MainWindow(QMainWindow):
     def export_register_csv(self, path: Path) -> None:
         export_csv(path, self.risks)
 
+    def _export_xlsx(self) -> None:
+        export_path, _ = QFileDialog.getSaveFileName(
+            self,
+            "Export risk register to Excel",
+            str(PROJECT_ROOT / "data" / "exports" / "risk-register.xlsx"),
+            "Excel Workbook (*.xlsx)",
+        )
+        if not export_path:
+            return
+        export_xlsx(Path(export_path), self.risks)
+        self.statusBar().showMessage(f"Exported Excel to {export_path}", 5000)
+
+    def export_register_xlsx(self, path: Path) -> None:
+        export_xlsx(path, self.risks)
+
+    def _export_pdf(self) -> None:
+        export_path, _ = QFileDialog.getSaveFileName(
+            self,
+            "Export risk register to PDF",
+            str(PROJECT_ROOT / "data" / "exports" / "risk-register.pdf"),
+            "PDF Files (*.pdf)",
+        )
+        if not export_path:
+            return
+        export_pdf(Path(export_path), self.risks)
+        self.statusBar().showMessage(f"Exported PDF to {export_path}", 5000)
+
+    def export_register_pdf(self, path: Path) -> None:
+        export_pdf(path, self.risks)
+
     def _save_all(self) -> None:
         save_risks(DATA_PATH, self.risks)
 
@@ -461,6 +503,16 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
         help="Export the current register to a CSV path.",
     )
     parser.add_argument(
+        "--export-xlsx",
+        type=Path,
+        help="Export the current register to an Excel workbook path.",
+    )
+    parser.add_argument(
+        "--export-pdf",
+        type=Path,
+        help="Export the current register to a PDF path.",
+    )
+    parser.add_argument(
         "--no-show",
         action="store_true",
         help="Do not keep the main window open after automated tasks.",
@@ -479,6 +531,10 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.export_csv:
         window.export_register_csv(args.export_csv)
+    if args.export_xlsx:
+        window.export_register_xlsx(args.export_xlsx)
+    if args.export_pdf:
+        window.export_register_pdf(args.export_pdf)
 
     if args.smoke_test:
         print("cyber-risk-tool-smoke-test: ok")

@@ -10,7 +10,7 @@ This is the flagship project in the portfolio. It shows hands-on execution with 
 
 ## Current Status
 
-`In progress`
+`Live validation complete`
 
 The baseline environment is now live in an `Azure for Students` subscription in `Sweden Central`. Core monitoring, diagnostics, alerting, `AzureActivity` validation, and `Microsoft Sentinel` onboarding are completed. Conditional Access validation is currently blocked by `Microsoft Entra` privileges.
 
@@ -24,6 +24,7 @@ See:
 - [Architecture Overview](docs/architecture.md)
 - [Portal Execution Checklist](docs/portal-execution-checklist.md)
 - [Alert Strategy](docs/alert-strategy.md)
+- [Demo Checklist](docs/demo-checklist.md)
 - [Incident Walkthrough](docs/incident-walkthrough.md)
 - [Live Sandbox Status](docs/live-sandbox-status.md)
 - [Artifacts](artifacts/README.md)
@@ -76,6 +77,7 @@ See:
 - [Implementation Plan](docs/implementation-plan.md)
 - [Architecture Overview](docs/architecture.md)
 - [Alert Strategy](docs/alert-strategy.md)
+- [Demo Checklist](docs/demo-checklist.md)
 - [Portal Execution Checklist](docs/portal-execution-checklist.md)
 - [Incident Walkthrough](docs/incident-walkthrough.md)
 - [Screenshot Runbook](docs/screenshot-runbook.md)

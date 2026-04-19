@@ -2,12 +2,12 @@
 
 ## Overall Status
 
-- `01-cloud-security-lab`: In progress, architecture and control docs started
-- `02-zero-trust-architecture-blueprint`: In progress, blueprint docs, diagrams, decisions, and first STRIDE model started
-- `03-power-bi-azure-data-pipeline`: In progress, sample dataset, semantic model, DAX catalogue, and dashboard brief started
-- `04-azure-iac`: In progress, Bicep baseline, network, workload, RBAC, and alert layer started
-- `05-cyber-risk-assessment-tool`: In progress, PySide6 MVP, scoring engine, sample scenario, and CSV export started
-- `06-teams-governance-toolkit`: In progress, governance policy pack, operating model, templates, and lifecycle assets started
+- `01-cloud-security-lab`: Live Azure sandbox deployed, validated in `AzureActivity`, and backed by fired alert evidence
+- `02-zero-trust-architecture-blueprint`: Blueprint docs, diagrams, decisions, and STRIDE model complete for portfolio use
+- `03-power-bi-azure-data-pipeline`: Sample dataset, semantic model, DAX catalogue, and dashboard preview complete
+- `04-azure-iac`: Bicep baseline, network, workload, RBAC, alert layer, and visible overview artifact complete
+- `05-cyber-risk-assessment-tool`: PySide6 MVP complete with scoring, persistence, and `CSV`/`XLSX`/`PDF` export
+- `06-teams-governance-toolkit`: Governance policy pack, operating model, templates, and visible artifact complete
 
 ## Immediate Backlog
 
@@ -24,7 +24,7 @@
 - [x] Deploy the Cloud Security Lab baseline into an Azure for Students subscription.
 - [x] Capture the first live monitoring, alerting, diagnostics, and Sentinel screenshots.
 - [x] Wait for subscription activity log export ingestion, then capture NSG change evidence in `AzureActivity`.
-- [ ] Capture a Conditional Access blocker note or live policy evidence, depending on future Entra privileges.
+- [x] Capture a Conditional Access blocker note or live policy evidence, depending on future Entra privileges.
 - [x] Choose the first dataset for the Power BI pipeline.
 - [x] Build the first sample dataset, star schema, and DAX design pack.
 - [x] Decide whether the desktop risk tool will use `PySide6` or another GUI stack.
@@ -35,8 +35,12 @@
 
 ## Quality Bar
 
-- [ ] Every project has a strong README.
-- [ ] Every project has at least one visible artifact.
-- [ ] Every project has a recruiter-focused value statement.
-- [ ] Every project has a demo checklist.
-- [ ] Every project is polished enough to discuss in an interview.
+- [x] Every project has a strong README.
+- [x] Every project has at least one visible artifact.
+- [x] Every project has a recruiter-focused value statement.
+- [x] Every project has a demo checklist.
+- [x] Every project is polished enough to discuss in an interview.
+
+## External Blockers
+
+- `01-cloud-security-lab`: `Conditional Access` validation is documented but still blocked by student-tenant `Microsoft Entra` privileges.

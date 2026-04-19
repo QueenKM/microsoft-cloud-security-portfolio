@@ -8,7 +8,7 @@ Explain the design of the MVP so the project is easy to demo, extend, and discus
 
 - desktop-first UI using `PySide6`
 - local `JSON` persistence for simplicity and portability
-- CSV export for the MVP so outputs are immediately usable in Excel
+- multi-format reporting export so the register can move into meetings and reporting flows
 - a small scoring engine separated from the UI so it can be tested independently
 
 ## Application Layers
@@ -41,7 +41,7 @@ Explain the design of the MVP so the project is easy to demo, extend, and discus
 
 - JSON load and save
 - scenario-pack loading
-- CSV export
+- `CSV`, `XLSX`, and `PDF` export
 
 ## Scoring Model
 
@@ -55,6 +55,6 @@ This keeps the model understandable while still showing how mitigating controls 
 ## Extension Path
 
 - replace JSON persistence with `SQLite`
-- add PDF and Excel export
 - add risk treatment tracking and due dates
 - add dashboard charts and filtering
+- package the app for easier distribution
